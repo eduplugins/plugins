@@ -1,0 +1,29 @@
+[
+  {
+    "slug": "example-educator",
+    "name": "Example Educator Plugin",
+    "description": "Example plugin included to demonstrate the EduPlugins repo structure — bundles the example skill and connector. Replace or remove once you've added your own.",
+    "skills": [
+      "assessment/exit-ticket",
+      "assessment/feedback-comment-bank",
+      "assessment/outline",
+      "assessment/rubric-builder",
+      "assessment/schedule",
+      "communication/parent-comms",
+      "communication/parent-curriculum-explainer",
+      "communication/report-comment",
+      "communication/voice-style-capture",
+      "differentiation/reviewer",
+      "differentiation/suggester",
+      "inquiry/ibl-unit",
+      "inquiry/pbl-unit",
+      "planning/casual-relief-plan",
+      "planning/lesson-planner",
+      "planning/slide-deck",
+      "planning/student-task-sheet",
+      "planning/unit-of-work",
+      "planning/unit-outline"
+    ],
+    "connectors": ["australian-curriculum-v9"]
+  }
+]

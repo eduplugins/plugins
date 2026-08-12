@@ -1,0 +1,91 @@
+{
+  "jurisdiction": "United States of America",
+  "curriculum": "US Common Core State Standards",
+  "keys": {
+    "Format": {
+      "values": [
+        { "value": "Text" },
+        { "value": "Video" },
+        { "value": "Interactive" },
+        { "value": "Image" },
+        { "value": "Downloadable" },
+        { "value": "Online" },
+        { "value": "Audio" },
+        { "value": "Course" },
+        { "value": "Assessment" }
+      ]
+    },
+    "Content Type": {
+      "values": [
+        { "value": "Teaching Resource" },
+        { "value": "Assessment" },
+        { "value": "Lesson/Unit Plan" },
+        { "value": "Curriculum Reference", "notes": "The standards document itself." },
+        { "value": "Learning Objectives" },
+        { "value": "Pedagogical Guidance" },
+        { "value": "Administrative Guidance" },
+        { "value": "Student-Generated Content" },
+        { "value": "Teacher-Generated Content" }
+      ]
+    },
+    "Thematic Category": {
+      "values": [
+        { "value": "Education Objectives And Materials", "notes": "Default for direct teaching/curriculum content." },
+        { "value": "School Management" },
+        { "value": "Special Education Requirements", "notes": "Takes priority over every other value when content is SEND/IEP-specific." },
+        { "value": "Wellbeing And Behaviour" },
+        { "value": "Teaching And Leadership" }
+      ]
+    },
+    "Use Case Theme": {
+      "values": [
+        { "value": "Student Learning And Performance", "notes": "Default for direct teaching/curriculum content." },
+        { "value": "School Management" },
+        { "value": "School Performance And Quality" }
+      ]
+    },
+    "Use Case": {
+      "values": [
+        { "value": "Curriculum & Lesson Planning" },
+        { "value": "Personalised Learning" },
+        { "value": "Resource Generation" },
+        { "value": "Teacher Training & Personal Development" },
+        { "value": "Formative Assessment" },
+        { "value": "Student Progress Tracking" },
+        { "value": "Student-Teacher Comms & Feedback" }
+      ]
+    },
+    "School Phase": {
+      "values": [
+        { "value": "Elementary", "pairs_with": ["K", "1", "2", "3", "4", "5"], "notes": "= Common Core's own ELA Literacy K-5 band." },
+        { "value": "Middle School", "pairs_with": ["6", "7", "8"], "notes": "= Common Core's own Grades 6-8 band." },
+        { "value": "High School", "pairs_with": ["9", "10", "11", "12"], "notes": "= Common Core's own Grades 9-10/11-12 bands, and Mathematics' High School domain organisation." },
+        { "value": "Non-Specific/All", "notes": "For genuinely phase-agnostic content, e.g. a cross-grade pedagogical resource." }
+      ]
+    },
+    "Stage / Level": {
+      "values": [
+        { "value": "K", "notes": "≈ age 4-5; UK: EYFS (Reception); AU: Foundation (F)." },
+        { "value": "1", "notes": "≈ age 5-7, with '2'; UK: Key Stage 1 (Years 1-2); AU: Years 1-2." },
+        { "value": "2", "notes": "≈ age 5-7, with '1'; UK: Key Stage 1 (Years 1-2); AU: Years 1-2." },
+        { "value": "3", "notes": "≈ age 7-11, with '4', '5'; UK: Key Stage 2 (Years 3-6); AU: Years 3-6." },
+        { "value": "4", "notes": "≈ age 7-11, with '3', '5'; UK: Key Stage 2 (Years 3-6); AU: Years 3-6." },
+        { "value": "5", "notes": "≈ age 7-11, with '3', '4'; UK: Key Stage 2 (Years 3-6); AU: Years 3-6." },
+        { "value": "6", "notes": "≈ age 11-14, with '7', '8'; UK: Key Stage 3 (Years 7-9); AU: Years 7-9." },
+        { "value": "7", "notes": "≈ age 11-14, with '6', '8'; UK: Key Stage 3 (Years 7-9); AU: Years 7-9." },
+        { "value": "8", "notes": "≈ age 11-14, with '6', '7'; UK: Key Stage 3 (Years 7-9); AU: Years 7-9." },
+        { "value": "9", "notes": "≈ age 14-16, with '10'; UK: Key Stage 4 (Years 10-11); AU: Year 10 (Australia's own Year 11 falls outside ACv9)." },
+        { "value": "10", "notes": "≈ age 14-16, with '9'; UK: Key Stage 4 (Years 10-11); AU: Year 10 (Australia's own Year 11 falls outside ACv9)." },
+        { "value": "11", "notes": "≈ age 16-18, with '12'; UK: Key Stage 5 / Post-16 / T-Levels; AU: state-based senior secondary (Years 11-12; not part of ACv9)." },
+        { "value": "12", "notes": "≈ age 16-18, with '11'; UK: Key Stage 5 / Post-16 / T-Levels; AU: state-based senior secondary (Years 11-12; not part of ACv9)." }
+      ]
+    },
+    "Subject": {
+      "values": [
+        { "value": "English Language Arts & Literacy", "notes": "Grades K-12. UK: English; AU: English. Only this and Mathematics have Common Core standards — there is no US-wide standard for Science, History, or other subjects; if content is US-targeted but falls outside these two plus the Literacy strand below, say there's no meaningful Subject value in this framework rather than forcing a mapping." },
+        { "value": "Mathematics", "notes": "Grades K-12. UK: Mathematics; AU: Mathematics." },
+        { "value": "Literacy in History/Social Studies, Science, and Technical Subjects", "notes": "Grades 6-12. Literacy skills applied within these subjects, not content standards for the subjects themselves. Roughly overlaps UK's Geography/History and AU's Humanities and Social Sciences conceptually, but only at the literacy-skills level." }
+      ]
+    }
+  }
+}

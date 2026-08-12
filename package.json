@@ -1,0 +1,18 @@
+{
+  "name": "eduplugins",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "plugins:build": "node scripts/build-plugins.mjs",
+    "plugins:check": "node scripts/build-plugins.mjs --check",
+    "eval": "tsx"
+  },
+  "dependencies": {
+    "@eval": "workspace:*",
+    "yaml": "^2.9.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "@types/node": "^22.10.0"
+  }
+}

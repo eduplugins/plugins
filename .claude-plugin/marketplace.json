@@ -1,0 +1,14 @@
+{
+  "name": "eduplugins",
+  "owner": {
+    "name": "EduPlugins",
+    "url": "https://github.com/EduPlugins/plugins"
+  },
+  "plugins": [
+    {
+      "name": "example-educator",
+      "source": "./plugins/example-educator",
+      "description": "Example plugin included to demonstrate the EduPlugins repo structure — bundles the example skill and connector. Replace or remove once you've added your own."
+    }
+  ]
+}
