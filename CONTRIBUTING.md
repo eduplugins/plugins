@@ -28,7 +28,7 @@ This regenerates `plugins/` and `.claude-plugin/marketplace.json`. Commit the ge
 
 ## Working on the website
 
-The informational site lives in its own repo, [EduPlugins/site](https://github.com/EduPlugins/site) — see that repo's `CLAUDE.md` for its design context before making UI changes there.
+The informational site lives in its own repo, [eduplugins/site](https://github.com/eduplugins/site) — see that repo's `CLAUDE.md` for its design context before making UI changes there.
 
 ## PR checklist
 

@@ -7,11 +7,11 @@ An open-source [Claude plugin marketplace](https://code.claude.com/docs/en/plugi
 In Claude Code or Claude Desktop:
 
 ```
-/plugin marketplace add EduPlugins/plugins
+/plugin marketplace add eduplugins/plugins
 /plugin install example-plugin@eduplugins
 ```
 
-Browse what's available on the [EduPlugins site](https://github.com/EduPlugins/site) (private — the informational site itself lives in its own repo).
+Browse what's available on the [EduPlugins site](https://github.com/eduplugins/site) (private — the informational site itself lives in its own repo).
 
 ## Repo structure
 
@@ -28,7 +28,7 @@ packages/eval/                    eval harness used to score skill output qualit
 
 `plugins/` and `.claude-plugin/marketplace.json` are generated and committed — don't hand-edit them. See [docs/data-model.md](docs/data-model.md) for the full schema and [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a skill, connector, or plugin.
 
-This repo is one of five under the [EduPlugins](https://github.com/EduPlugins) org — see [EduPlugins/site](https://github.com/EduPlugins/site) for the project overview, [EduPlugins/packages](https://github.com/EduPlugins/packages) for the curriculum data skills reference, [EduPlugins/mcp](https://github.com/EduPlugins/mcp) for the per-package MCP servers, and [EduPlugins/api](https://github.com/EduPlugins/api) for custom actions (e.g. `/label`).
+This repo is one of five under the [EduPlugins](https://github.com/eduplugins) org — see [eduplugins/site](https://github.com/eduplugins/site) for the project overview, [eduplugins/packages](https://github.com/eduplugins/packages) for the curriculum data skills reference, [eduplugins/mcp](https://github.com/eduplugins/mcp) for the per-package MCP servers, and [eduplugins/api](https://github.com/eduplugins/api) for custom actions (e.g. `/label`).
 
 ## Development
 
