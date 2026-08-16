@@ -1,0 +1,37 @@
+name: Sync skills to R2
+
+# Builds a single JSON index of every skill's frontmatter (name, description,
+# version, released, keywords, references — see
+# scripts/build-skills-index.mjs) and uploads it to the `skills` R2 bucket
+# that eduplugins/site's /skills route reads at request time
+# (env.SKILLS.get("index.json")). Mirrors eduplugins/packages's
+# sync-r2.yml — same account, same secret names.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "skills/**"
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - run: node scripts/build-skills-index.mjs
+
+      - name: Upload skills index to R2
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+          # eduplugins Cloudflare account — not secret, just the R2 S3 API host.
+          R2_ENDPOINT: https://ad7888b1dca6e504752a8b4bc23c5a9b.r2.cloudflarestorage.com
+        run: |
+          set -euo pipefail
+          aws s3 cp dist/skills-index.json s3://skills/index.json \
+            --endpoint-url "$R2_ENDPOINT" \
+            --content-type application/json
