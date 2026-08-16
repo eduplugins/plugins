@@ -131,7 +131,7 @@ function generate(outRoot) {
   writeFileSync(
     join(outRoot, ".claude-plugin", "marketplace.json"),
     JSON.stringify(
-      { name: "eduplugins", owner: { name: "EduPlugins", url: "https://github.com/easedup/eduplugins" }, plugins: marketplaceEntries },
+      { name: "eduplugins", owner: { name: "EduPlugins", url: "https://github.com/eduplugins/plugins" }, plugins: marketplaceEntries },
       null,
       2,
     ) + "\n",
