@@ -3,7 +3,7 @@
   "mcpServers": {
     "australian-curriculum-v9": {
       "type": "streamable-http",
-      "url": "https://acv9.easedup.com/mcp"
+      "url": "https://acv9.eduplugins.com/mcp"
     }
   }
 }

@@ -2,7 +2,19 @@
   {
     "slug": "australian-curriculum-v9",
     "type": "mcp-http",
-    "url": "https://acv9.easedup.com/mcp",
+    "url": "https://acv9.eduplugins.com/mcp",
     "description": "Australian Curriculum v9"
+  },
+  {
+    "slug": "common-core-state-standards",
+    "type": "mcp-http",
+    "url": "https://common-core.eduplugins.com/mcp",
+    "description": "US Common Core State Standards"
+  },
+  {
+    "slug": "uk-national-curriculum",
+    "type": "mcp-http",
+    "url": "https://uk-curriculum.eduplugins.com/mcp",
+    "description": "UK National Curriculum"
   }
 ]
