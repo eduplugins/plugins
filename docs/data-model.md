@@ -9,9 +9,13 @@ One folder per skill, grouped by category (e.g. `skills/assessment/rubric-builde
 | Field | Required | Description |
 |---|---|---|
 | `name` | yes | Display name |
-| `description` | yes | One-line summary shown in the catalog |
+| `description` | yes | One-line summary shown in the catalog, and the trigger text the client matches against |
+| `version` | no | Skill version (semver-ish, e.g. `1.1.0`) |
+| `released` | no | Date the current version was last revised, `YYYY-MM-DD` |
+| `keywords` | no | Catalog/discovery taxonomy — free-form nested object (e.g. `content-type`, `use-case`, `keyword`) |
+| `references` | no | Array of source names the skill's evidence base draws on |
 
-Everything after the frontmatter is the skill's instructions.
+Everything after the frontmatter is the skill's instructions. A skill is expected to be evidence-backed: cite the research or authoritative guidance behind its approach in an "Evidence base" section in the body, and list the same sources in `references`. See [docs/evidence/](evidence/) for the full research behind each `example-educator` skill, and [CONTRIBUTING.md](../CONTRIBUTING.md) for what a new skill's evidence base needs.
 
 ## `connectors.json`
 
@@ -52,10 +56,12 @@ Every `skills`/`connectors` slug must resolve to an entry in `skills/` / `connec
 
 ## Generated output
 
-For each plugin, `pnpm run plugins:build` writes `plugins/<slug>/`:
+For each plugin, `pnpm run plugins:build` writes `plugins/<slug>/` twice over — once in Claude's format, once in the vendor-neutral [agent-plugins.org](https://agent-plugins.org/) format ([spec 1.0.0](https://github.com/agentplugins/agent-plugins-spec)) — both sharing the same `skills/` folder:
 
-- `.claude-plugin/plugin.json` — plugin manifest (`name`, `displayName`, `description`, `skills` path)
-- `skills/<category>-<name>/` — a copy of each bundled skill's folder
-- `.mcp.json` — present only if the plugin bundles at least one `mcp-http` / `mcp-sse` / `mcp-stdio` connector; maps each to an `mcpServers` entry (`{ type, url }` for http/sse, `{ type, command, args?, env? }` for stdio)
+- `skills/<category>-<name>/` — a copy of each bundled skill's folder (shared by both formats)
+- `.claude-plugin/plugin.json` — Claude's plugin manifest (`name`, `displayName`, `description`, `skills` path)
+- `.mcp.json` — Claude's MCP config; present only if the plugin bundles at least one `mcp-http` / `mcp-sse` / `mcp-stdio` connector; maps each to an `mcpServers` entry (`{ type, url }` for http/sse, `{ type, command, args?, env? }` for stdio)
+- `plugin.json` — agent-plugins.org manifest (`$schema`, `name`, `description`, `license`, `homepage`, `repository`), validated against [`plugin.schema.json`](https://agent-plugins.org/schemas/1.0.0/plugin.schema.json); the build fails if `plugin.slug` isn't a valid agent-plugins.org `name`
+- `mcp.json` — agent-plugins.org MCP config; same connectors as `.mcp.json` above but with spec type names (`streamable-http` instead of `http`), present under the same condition
 
-It also writes `.claude-plugin/marketplace.json` at the repo root, listing every plugin as a marketplace entry.
+It also writes `.claude-plugin/marketplace.json` at the repo root, listing every plugin as a Claude marketplace entry. agent-plugins.org has no marketplace-level manifest in v1.0.0 — clients following that spec load a plugin directly from its `plugins/<slug>/` folder.

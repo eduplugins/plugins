@@ -3,6 +3,11 @@
 // sources of truth: skills/*/SKILL.md, connectors.json, plugins.json.
 // See docs/data-model.md for the schema. Run via `pnpm run plugins:build`
 // (or `--check` via `pnpm run plugins:check` to verify nothing has drifted).
+//
+// Each plugin is written twice over, sharing one skills/ folder:
+//   - .claude-plugin/plugin.json + .mcp.json   — Claude's plugin format
+//   - plugin.json + mcp.json (root)            — agent-plugins.org spec 1.0.0
+//     https://github.com/agentplugins/agent-plugins-spec
 
 import { existsSync, mkdirSync, rmSync, readFileSync, writeFileSync, readdirSync, statSync, cpSync } from "node:fs";
 import { join, relative, dirname } from "node:path";
@@ -11,9 +16,13 @@ import os from "node:os";
 
 const ROOT = dirname(dirname(fileURLToPath(import.meta.url)));
 const CHECK = process.argv.includes("--check");
-// connectors.json `type` -> .mcp.json server `type`. "url" connectors are plain
+// connectors.json `type` -> Claude .mcp.json server `type`. "url" connectors are plain
 // links (not MCP servers) and are intentionally excluded from this map.
 const MCP_TYPE_MAP = { "mcp-http": "http", "mcp-sse": "sse", "mcp-stdio": "stdio" };
+// connectors.json `type` -> agent-plugins.org mcp.json server `type` (schemas/1.0.0/mcp.schema.json).
+const AGENT_PLUGINS_MCP_TYPE_MAP = { "mcp-http": "streamable-http", "mcp-sse": "sse", "mcp-stdio": "stdio" };
+// agent-plugins.org plugin.schema.json `name` pattern.
+const AGENT_PLUGINS_NAME_RE = /^(?!.*(?:--|\.\.))[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$/;
 
 function parseFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---/);
@@ -73,6 +82,9 @@ for (const plugin of plugins) {
   for (const c of plugin.connectors ?? []) {
     if (!connectors.has(c)) errors.push(`plugin "${plugin.slug}" references unknown connector "${c}"`);
   }
+  if (plugin.slug.length > 64 || !AGENT_PLUGINS_NAME_RE.test(plugin.slug)) {
+    errors.push(`plugin "${plugin.slug}" is not a valid agent-plugins.org name (lowercase alphanumeric, ".", "-", max 64 chars, no leading/trailing or doubled separators)`);
+  }
 }
 if (errors.length > 0) {
   console.error("build-plugins: validation failed:\n" + errors.map((e) => `  - ${e}`).join("\n"));
@@ -122,6 +134,50 @@ function generate(outRoot) {
     }
     if (Object.keys(mcpServers).length > 0) {
       writeFileSync(join(pluginDir, ".mcp.json"), JSON.stringify({ mcpServers }, null, 2) + "\n");
+    }
+
+    // agent-plugins.org spec 1.0.0: plugin.json + mcp.json at the plugin root,
+    // sharing the same skills/ folder generated above.
+    writeFileSync(
+      join(pluginDir, "plugin.json"),
+      JSON.stringify(
+        {
+          $schema: "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+          name: plugin.slug,
+          description: plugin.description,
+          license: "MIT",
+          homepage: "https://github.com/eduplugins/plugins",
+          repository: "https://github.com/eduplugins/plugins",
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+
+    const agentPluginsMcpServers = {};
+    for (const c of plugin.connectors ?? []) {
+      const connector = connectors.get(c);
+      const mcpType = AGENT_PLUGINS_MCP_TYPE_MAP[connector.type];
+      if (!mcpType) continue; // "url" connectors are plain links, not MCP servers
+      agentPluginsMcpServers[connector.slug] =
+        mcpType === "stdio"
+          ? {
+              type: mcpType,
+              command: connector.command,
+              ...(connector.args ? { args: connector.args } : {}),
+              ...(connector.env ? { env: connector.env } : {}),
+            }
+          : { type: mcpType, url: connector.url };
+    }
+    if (Object.keys(agentPluginsMcpServers).length > 0) {
+      writeFileSync(
+        join(pluginDir, "mcp.json"),
+        JSON.stringify(
+          { $schema: "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json", mcpServers: agentPluginsMcpServers },
+          null,
+          2,
+        ) + "\n",
+      );
     }
 
     marketplaceEntries.push({ name: plugin.slug, source: `./plugins/${plugin.slug}`, description: plugin.description });
