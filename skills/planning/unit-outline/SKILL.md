@@ -1,14 +1,34 @@
 ---
 name: unit-outline
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
   Creates a high-level unit outline — scope and sequence, big ideas, essential
   questions, curriculum links, and assessment overview — before committing to
-  full lesson detail. Use this as the first stage of unit planning, or as a
-  standalone deliverable when a teacher needs a unit overview for planning,
-  reporting, or sharing with colleagues. Always validates with the teacher
-  before expanding to a full Unit of Work.
+  full lesson detail. Trigger as the first stage of unit planning, when a
+  teacher asks to map out a unit or term, or as a standalone deliverable for
+  a unit overview to share with colleagues or use for reporting. Always
+  validates with the teacher before expanding into full lesson-by-lesson
+  detail.
+keywords:
+  content-type: Lesson/Unit Plan
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Curriculum & Lesson Planning
+    - Resource Generation
+    - Personalised Learning
+  topics: Unit Design
+  keyword:
+    - Scope And Sequence
+    - Essential Questions
+    - Big Ideas
+    - Backward Design
+    - Assessment Overview
+references:
+  - "Australian Curriculum, Assessment and Reporting Authority (ACARA), V9 Australian Curriculum"
+  - "Australian Institute for Teaching and School Leadership (AITSL)"
+  - "Western Michigan University Center for Teaching, Learning and Assessment, summarising Wiggins & McTighe (1998), Understanding by Design, ASCD"
 ---
 
 # Unit Outline
@@ -19,64 +39,44 @@ at a level of detail that's useful for planning and communication without
 being exhaustive.
 
 A good unit outline is the foundation everything else builds on. Get this
-right before going deeper.
+right before going deeper: like backward design, this fixes results and
+assessment evidence before any activity gets planned, so a validation gate
+here is enforced strictly — never skip ahead to lesson detail without
+explicit confirmation.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-year level, teaching context, pedagogy framework, working mode, and any
-template or differentiation context from it silently. Do not ask the teacher
-for information the collator already holds.
+## What this skill needs
+
+- Curriculum, year level, teaching context, and (if relevant) a pedagogy
+  framework, working mode, template, or differentiation context. If already
+  known from earlier in this conversation, don't ask again.
+- Working mode — ask if not already established:
+  > "Would you prefer we build this together step by step, or would you like
+  > me to ask a few questions and produce a full draft?"
 
 ---
 
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — which curriculum are you
-> working with, and what year levels do you teach?"
+## Establish curriculum content
+Establish the real curriculum content for this subject and year level before
+asking planning questions, using whatever curriculum lookup capability is
+available in this session. Never use training data for curriculum standards
+— if no lookup capability is available, ask the teacher to paste the
+relevant content.
 
-Store the answers and proceed. Do not ask again this session.
+For units that cross learning areas (e.g. a HASS/English cross-curricular
+unit), cover both. Note cross-curricular links where genuine — don't force
+them.
 
-Then ask working mode if not known:
-> "Would you prefer we build this together step by step, or would you like me
-> to ask a few questions and produce a full draft?"
-
-Once the teacher names their curriculum, resolve the BASE_URL and MCP_URL from
-this table and use them for all fetching in this session:
-
-| Curriculum | BASE_URL | MCP_URL | Region |
-|---|---|---|---|
-| Australian Curriculum v9 | `https://acv9.easedup.com` | `https://acv9.easedup.com/mcp` | Australia (Foundation–Year 10) |
-| Common Core State Standards | `https://common-core.easedup.com` | `https://common-core.easedup.com/mcp` | US (K–12 Maths & ELA/Literacy) |
-| UK National Curriculum | `https://uk-curriculum.easedup.com` | `https://uk-curriculum.easedup.com/mcp` | UK (Key Stages 1–4, Years 1–11) |
-
-If the teacher names a curriculum not in this table, note that it may not yet
-be available on EasedUP and proceed with whatever official documentation they
-can provide.
-
----
-
-## Fetch curriculum content
-Try the MCP server first (`get`, `search`, `get_all`) using the MCP_URL above.
-If MCP is unavailable, fetch the relevant `.md` directly using the pattern
-`{BASE_URL}/{subject}/{year-level}.md` (e.g. `/english/year-3.md`) — if the
-exact subject or year slug is unclear, use the MCP `get_all` tool to list
-valid paths. Never use training data for curriculum standards.
-
-For units that cross learning areas (e.g. a HASS/English cross-curricular unit),
-fetch both. Note cross-curricular links where genuine — don't force them.
-
-Fetch before asking planning questions. With the full curriculum content in
-hand, the AI can surface the most relevant standards as suggestions rather
-than asking the teacher to name them blind.
+With the full curriculum content in hand, surface the most relevant
+standards as suggestions rather than asking the teacher to name them blind.
 
 ---
 
 ## Planning questions
 
-Ask these before generating. Skip anything already known from the collator.
+Ask these before generating. Skip anything already known from earlier in
+the conversation.
 Combine where natural — one clear question is always better than two thin ones.
 
 1. What is the unit topic, theme, or driving question?
@@ -96,7 +96,7 @@ Combine where natural — one clear question is always better than two thin ones
 ## Generate the unit outline
 
 Use the confirmed curriculum standards from the planning conversation.
-Apply the pedagogy framework (if set by the collator and confirmed by the
+Apply the pedagogy framework (if established earlier and confirmed by the
 teacher — see pedagogy guidance below) while generating.
 
 ### If a template is loaded: match it exactly.
@@ -144,7 +144,10 @@ Provocative enough to sustain a unit of investigation.
 | ... | | | |
 
 Keep each cell brief — this is a map, not a lesson plan. Full lesson detail
-comes in Unit of Work.
+comes later, once this outline is expanded lesson by lesson. ACARA's own
+sequencing guidance treats this higher-level curriculum map as a distinct
+planning layer from lesson-level detail — drifting into lesson detail here
+defeats that purpose.
 
 **Assessment Overview:**
 
@@ -167,8 +170,9 @@ Core materials, digital tools, texts, or experts needed for the unit.
 
 ### How to apply this
 
-A pedagogy framework set in the collator reflects the teacher's preferred
-approach — but not every framework suits every unit equally well. At the
+A pedagogy framework established earlier in the conversation reflects the
+teacher's preferred approach — but not every framework suits every unit
+equally well. At the
 unit-outline level, some frameworks (particularly UbD and IBL) have strong
 natural alignment; others are more at home in lesson-level planning.
 
@@ -181,7 +185,12 @@ silently restructuring the plan:
 > those sections through that frame?"
 
 Only apply framework-specific restructuring if the teacher confirms. Don't
-shoehorn structure that doesn't serve this particular unit.
+shoehorn structure that doesn't serve this particular unit. Note that these
+frameworks don't carry equal evidentiary weight — UbD and IBL are
+well-established professional practice built on consensus and wide uptake
+rather than controlled-trial evidence, while Explicit Teaching draws on
+stronger empirical backing. Fit for this unit is the deciding factor either
+way, but don't imply every framework choice rests on the same kind of proof.
 
 ### Framework-specific guidance (apply if confirmed)
 
@@ -195,8 +204,9 @@ shoehorn structure that doesn't serve this particular unit.
   through the sequence. Flag where metacognitive strategies and feedback
   loops are built in.
 - **Explicit Teaching:** Sequence should show a clear arc from modelled →
-  guided → independent across the weeks. Make that progression visible in
-  the sequence table.
+  guided → independent across the weeks, with teacher modelling deliberately
+  fading from earlier to later weeks — not just within each lesson. Make
+  that progression visible in the sequence table.
 - **UDL:** Differentiation Considerations should address all three UDL
   principles: representation, action/expression, engagement — not just
   support and extension.
@@ -213,17 +223,12 @@ as a suggestion — don't apply it silently.
 
 ## Curriculum terminology
 
-### When the collator is loaded
-Use the terminology values from the collator's config exactly:
-- TERMINOLOGY_CONTENT → label for curriculum standards
-- TERMINOLOGY_STANDARDS → label for achievement descriptors
-- TERMINOLOGY_GOALS → label for lesson goals (used when referencing
-  lesson-level planning within the sequence)
+If specific terminology has already been established earlier in this
+conversation (labels for curriculum standards, achievement descriptors, or
+lesson goals), replace the bracketed placeholders in the output template
+with those exact terms.
 
-Replace the bracketed placeholders in the output template with the
-collator's terms.
-
-### When running standalone
+### Otherwise
 Use neutral, curriculum-agnostic language throughout:
 - "curriculum standards" or "curriculum links" (not content descriptions,
   not standards, not programmes of study)
@@ -257,7 +262,8 @@ then offer the pedagogy reflection. Close with:
 
 ## Validate before expanding
 
-After the outline is confirmed, always check in before moving to Unit of Work:
+After the outline is confirmed, always check in before expanding to full
+lesson detail:
 
 > "Here's the unit outline — does this capture the right scope and direction?
 > Once you're happy with this shape, I can build out the full unit with
@@ -269,3 +275,22 @@ Do not proceed to full lesson planning without explicit confirmation.
 
 ## Reference files
 - `references/pedagogy-frameworks.md` — Full guidance for each pedagogy framework
+
+---
+
+## Evidence base
+- ACARA, *Sequencing learning* (V9 Australian Curriculum) — supports the
+  Sequence Overview as a distinct, higher-level planning layer kept
+  separate from lesson detail.
+  <https://www.australiancurriculum.edu.au/resources/curriculum-leadership/eight-aspects-of-curriculum-planning/sequencing-learning>
+- AITSL, Standards 2 and 3 — professional basis for curriculum links tied
+  to codes/achievement descriptors and an assessment overview built before
+  lesson detail.
+  <https://www.aitsl.edu.au/standards>
+- Wiggins & McTighe (1998), *Understanding by Design* — backward design's
+  results-before-activities order underpins the validation gate ("get this
+  right before going deeper") and the UbD guidance to position assessment
+  before the sequence; professional-consensus practice rather than an
+  experimentally tested intervention, unlike the stronger empirical base
+  behind Explicit Teaching.
+  <https://wmich.edu/x/teaching-learning/teaching-resources/backward-design>

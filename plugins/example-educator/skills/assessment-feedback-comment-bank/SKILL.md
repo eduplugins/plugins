@@ -1,14 +1,34 @@
 ---
 name: feedback-comment-bank
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
-  Generates a reusable bank of written feedback phrases organised by rubric
-  criterion and grade band. Designed to make marking a large set of work faster
-  and more consistent. Phrases are specific and actionable, grounded in the
-  rubric or achievement standards. Adapts to teacher voice if a voice profile
-  is available. Works standalone or after a Rubric Builder or Assessment Outline
-  output produced by EasedUP.
+  Generates a reusable bank of written feedback phrases, organised by rubric
+  criterion and grade band, grounded in the rubric or achievement standards
+  and adapted to a teacher's voice profile if one is available.
+  Trigger when a teacher needs to mark a class set faster and more
+  consistently, wants ready-made report-comment language, or already has a
+  rubric or assessment outline and needs feedback phrases to match it.
+keywords:
+  content-type: Assessment
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Assessment And Feedback
+    - Student-Teacher Comms & Feedback
+    - Resource Generation
+  topics: Marking And Feedback
+  keyword:
+    - Feedback Phrases
+    - Comment Bank
+    - Grade Band
+    - Marking
+    - Report Comments
+references:
+  - "John Hattie and Helen Timperley, Review of Educational Research (American Educational Research Association)"
+  - "Joe Collin and Alex Quigley, Education Endowment Foundation (EEF)"
+  - "NSW Department of Education (CESE)"
+  - "Australian Institute for Teaching and School Leadership (AITSL)"
 ---
 
 # Feedback Comment Bank
@@ -20,93 +40,77 @@ comments like "well done" or "needs improvement."
 
 Good feedback phrases are: specific to the criterion, actionable (the student
 knows what to do differently), varied enough to not sound identical across
-25 scripts, and honest about both strength and growth.
+25 scripts, and honest about both strength and growth. Specificity and
+actionability aren't style preferences — feedback research finds vague,
+copy-pasted comments are exactly the low-precision feedback that fails to
+close the gap between current and desired performance (see Evidence base).
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-year level, teaching context, pedagogy framework, working mode, grade bands,
-and any voice profile from it silently. Do not ask the teacher for information
-the collator already holds.
+## What this skill needs
+
+- Curriculum, subject, and year level for the task.
+- A rubric or set of criteria with grade bands. If none is supplied, build
+  from the relevant achievement standards for the stated curriculum, subject,
+  and year level — ask the teacher to paste them in if they have them handy,
+  or use whatever curriculum lookup capability is available in this session.
+- Optional: a teacher voice profile (tone/style guidance), from
+  `references/voice-style.md` if present, or supplied directly.
+
+If any of these are already available in context — from earlier in this
+conversation or supplied directly by the teacher or another tool — use them
+directly rather than re-asking. Only ask for what's genuinely missing.
 
 ---
 
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — which curriculum are you
-> working with, and what year levels do you teach?"
+## Step 1: Confirm working mode and inputs
 
-Store the answers and proceed. Do not ask again this session.
-
-Then ask working mode if not known:
+If working mode isn't already established, ask:
 > "Would you prefer we build this together step by step, or would you like me
 > to ask a few questions and produce a full draft?"
 
-Once the teacher names their curriculum, resolve the BASE_URL and MCP_URL from
-this table and use them for all fetching in this session:
-
-| Curriculum | BASE_URL | MCP_URL | Region |
-|---|---|---|---|
-| Australian Curriculum v9 | `https://acv9.easedup.com` | `https://acv9.easedup.com/mcp` | Australia (Foundation–Year 10) |
-| Common Core State Standards | `https://common-core.easedup.com` | `https://common-core.easedup.com/mcp` | US (K–12 Maths & ELA/Literacy) |
-| UK National Curriculum | `https://uk-curriculum.easedup.com` | `https://uk-curriculum.easedup.com/mcp` | UK (Key Stages 1–4, Years 1–11) |
-
-If the teacher names a curriculum not in this table, note that it may not yet
-be available on EasedUP and proceed with whatever official documentation they
-can provide.
+If curriculum and year level aren't already known, ask for them. Store the
+answers and don't ask again this session.
 
 ---
 
-## Step 1: Check context for rubric and criteria
+## Step 2: Establish rubric, criteria, and grade bands
 
-If a Rubric Builder or Assessment Outline output exists in this session: extract
-criteria and grade bands from it directly. Do not ask — they're already in
-context.
+If rubric/criteria with grade bands are already available in context, extract
+them directly — don't ask.
 
-If no rubric is in context:
-> "Do you have a rubric or criteria to work from? If so, paste them in.
-> If not, tell me the task and I'll build from the achievement standards."
+Otherwise:
+> "Do you have a rubric or criteria to work from? If so, paste them in. If
+> not, tell me the task and I'll build from the achievement standards — paste
+> them in if you have them, or let me know if I should look them up."
 
-Note: curriculum, year level, and subject are already known from the collator
-or standalone fallback — do not ask for them again here.
+If no rubric or achievement standards are available at all, ground the
+comment bank in the task description and general good-practice criteria for
+the subject and year level, and say so plainly in the output rather than
+inventing standards.
 
----
-
-## Fetch curriculum content
-If no rubric or criteria are available in context, fetch achievement standards
-to ground the feedback language.
-
-Try the MCP server first (`get`, `search`, `get_all`) using the MCP_URL above.
-If MCP is unavailable, fetch the relevant `.md` directly using the pattern
-`{BASE_URL}/{subject}/{year-level}.md` (e.g. `/english/year-3.md`) — if the
-exact subject or year slug is unclear, use the MCP `get_all` tool to list
-valid paths, or check the BASE_URL root. Never use training data for
-curriculum standards.
-
-If achievement descriptors were passed from a Rubric Builder or Assessment
-Outline output earlier in this session, use those directly — do not fetch again.
-
----
-
-## Step 2: Confirm grade bands
-
-Use the collator's GRADE_BANDS value if present. If not set, default to A / B / C / D / E.
-
-Apply the correct band labels throughout the comment bank output.
+Grade bands: use whatever bands the rubric or standards specify. If none are
+given, default to A / B / C / D / E and confirm with the teacher if it
+matters for their context.
 
 ---
 
 ## Step 3: Generate the comment bank
 
 For each criterion, produce 3–5 phrases per grade band. Apply the teacher's
-voice profile if available (from `references/voice-style.md` or the collator).
-If no voice profile is set, default phrases are clear, warm, and professional —
-appropriate for a secondary or upper primary audience.
+voice profile if available. If no voice profile is set, default phrases are
+clear, warm, and professional — appropriate for a secondary or upper primary
+audience.
 
 Vary sentence structure and opening so teachers aren't copying the same phrase
-across 30 scripts.
+across 30 scripts — a repeated phrase used verbatim tends to drift toward
+generic praise or diagnosis, which is weaker feedback than a phrase specific
+to what this student's work actually shows.
+
+Keep every opener naming what the student *did* in the work ("You have
+demonstrated...") rather than generic praise of the person ("Great job!",
+"Well done!") — self-directed praise is the weakest form of feedback and
+doesn't tell the student anything to repeat or fix.
 
 ---
 
@@ -164,6 +168,40 @@ Closing / forward-looking phrases:
 - "Keep building on this foundation."
 - "This puts you in a strong position for [next task]."
 - "Focus on [specific skill] in your next piece."
+
+---
+
+## Evidence base
+- Hattie & Timperley, University of Melbourne / *Review of Educational
+  Research* (2007) — backs requiring phrases to be specific and actionable
+  rather than generic, and keeping openers task-focused rather than
+  self-directed praise.
+  <https://journals.sagepub.com/doi/abs/10.3102/003465430298487>
+- Education Endowment Foundation, Collin & Quigley (2021) — backs feedback
+  that names a concrete next step and is realistic for students to actually
+  use, informing the "1–2 priority phrases" guidance below.
+  <https://files.eric.ed.gov/fulltext/ED615988.pdf>
+- NSW DoE/CESE, *What Works Best 2025 — Effective feedback* (2025) — backs
+  grounding every phrase in the stated criterion, aligned to the task's
+  learning intention. Effectiveness still varies by context and subject, so
+  no phrase bank guarantees an outcome on its own.
+  <https://education.nsw.gov.au/content/dam/main-education/about-us/educational-data/cese/What_Works_Best_2025_Effective_feedback_practical_guide.pdf>
+- AITSL, Australian Professional Standards for Teachers, Standard 5.2
+  (current) — timely, well-targeted feedback is a formal expectation of
+  Australian teaching practice, which this skill supports at class-set scale.
+  <https://www.aitsl.edu.au/standards>
+
+## Quality check before delivering
+
+Before presenting the comment bank, verify each phrase tells the student a
+specific next action, not just a diagnosis — "your argument needs stronger
+evidence" names a gap; "use two quoted examples from the text to support each
+claim" tells the student what to do about it. Favour the second form.
+
+Note for teachers using the bank: pick 1–2 priority phrases per student
+rather than compiling every applicable comment onto one script — a dense list
+of correct-but-unprioritised feedback is harder for a student to act on than
+a short, targeted one.
 
 ---
 

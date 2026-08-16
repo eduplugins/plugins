@@ -1,17 +1,33 @@
 ---
 name: voice-style-capture
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
-  Learns a teacher's written voice from examples so that report comments and
-  parent communications sound like the teacher wrote them. Run this skill
-  once before using Report Comment Writer or Parent Comms Writer. Analyses
-  tone, sentence patterns, vocabulary, warmth level, and structural habits
-  from the teacher's own writing samples. Produces a saved voice profile
-  skill file — [teacher-name]-voice-profile — that Report Comment Writer and
-  Parent Comms Writer detect and apply silently when loaded. Trigger when a
-  teacher wants to personalise their AI-drafted communications or report
-  comments to match their own writing style.
+  Learns a teacher's written voice from writing samples so report comments
+  and parent communications sound like the teacher wrote them, not like a
+  generic AI. Analyses tone, sentence patterns, vocabulary, and structural
+  habits, then produces a saved [teacher-name]-voice-profile reference file
+  that can be supplied to any later drafting task — report comments, parent
+  communications, or feedback phrases — to apply the same voice. Trigger
+  when a teacher wants to personalise AI-drafted report comments or parent
+  communications, or asks to save or reuse their writing style.
+keywords:
+  content-type: Pedagogical Guidance
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Teacher Voice & Style Capture
+    - Resource Generation
+  topics: Teacher Professional Practice
+  keyword:
+    - Voice Profile
+    - Tone Matching
+    - Writing Sample Analysis
+    - Voice Profile Skill File
+references:
+  - "Janet Goodall & Caroline Montgomery"
+  - "AITSL"
+  - "Education Endowment Foundation"
 ---
 
 # Voice & Style Capture
@@ -20,24 +36,22 @@ You are learning how this teacher writes so that drafts produced by other
 skills — especially report comments and parent communications — sound like
 them, not like a generic AI.
 
-The goal is not mimicry for its own sake. It's so that when a teacher sends
-a report comment or a letter home, it reflects their relationship with their
-students and families — not a template.
+The goal is not mimicry for its own sake. Personalised, relationship-based
+communication sits further along the parent engagement continuum than
+generic, uniform messaging — so matching the teacher's voice keeps a report
+comment or letter home reading as relational, not templated. That said, this
+specific technique — an AI capturing and replaying a teacher's voice —
+hasn't itself been directly studied; treat it as a reasonable extension of
+broader personalisation research, not a separately proven intervention, and
+don't overclaim an evidence base to teachers beyond that.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-school name, and teaching context from it silently. Do not ask the teacher
-for information the collator already holds.
+## What this skill needs
 
----
-
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — what school and year level
-> are you writing for?"
+School name and teaching context. If already known from earlier in this
+conversation, don't ask again. Otherwise open with:
+> "What school and year level are you writing for?"
 
 Store the answers and proceed. Do not ask again this session.
 
@@ -90,6 +104,10 @@ Read every example carefully. Extract:
 - Do they use em dashes, semicolons, parentheses?
 - Short paragraphs or more flowing blocks?
 
+Noting what a teacher avoids matters as much as noting what they use —
+a stock opener like "Name is a pleasure to have in class" is exactly the
+generic, non-personalised phrasing that a genuine voice is meant to replace.
+
 ---
 
 ## Step 3: Confirm the voice profile
@@ -123,7 +141,8 @@ Apply the confirmed voice profile silently to all report comments and parent
 communications produced in this session. Do not announce it each time.
 
 **Default voice (no profile loaded or teacher declined):**
-- Warm, professional educator English matched to the CURRICULUM setting
+- Warm, professional educator English matched to the stated curriculum's
+  conventions
 - Active voice
 - Student named once at the start of a comment
 - Strength → growth area → forward-looking structure
@@ -134,32 +153,21 @@ communications produced in this session. Do not announce it each time.
 
 ## Step 5: Save as a reusable voice profile
 
-> "Would you like me to save your voice profile as a file you can load at
-> the start of any future session? That way Report Comment Writer and Parent
-> Comms Writer will apply your style automatically — no need to paste
-> examples each time."
+> "Would you like me to save your voice profile as a reference file? You can
+> then paste it in or attach it whenever you want report comments, parent
+> communications, or other written feedback in your voice — no need to
+> paste examples again each time."
 
-If yes, produce a named voice profile skill file as a zip named
-`[teacher-name]-voice-profile.zip` containing a single `SKILL.md` at the
-root:
+If yes, produce a plain reference file named
+`[teacher-name]-voice-profile.md`:
 
 ```
----
-name: [teacher-name]-voice-profile
-version: 1.0.0
-released: [today's date]
-description: >
-  Applies [Teacher name]'s written voice to all report comments and parent
-  communications in this session. Load before using Report Comment Writer
-  or Parent Comms Writer. Detected and applied automatically by any skill
-  whose name ends in `-voice-profile`, including when the EasedUP Edu
-  Collator is loaded.
----
-
 # Voice Profile: [Teacher name]
 
 Apply this voice to all report comments and parent-facing communications
-in this session. Do not announce that a voice profile is active — just use it.
+that reference this profile, in support of reporting clearly, accurately,
+and respectfully in the teacher's own voice. Do not announce that a voice
+profile is active — just use it.
 
 ## Tone
 [Confirmed summary — e.g. "Warm and encouraging, professional but never stiff"]
@@ -184,10 +192,9 @@ naming the next step explicitly"]
 the confirmed style, approx. 70 words, grounded in a realistic scenario]
 ```
 
-This file is detected automatically by Report Comment Writer and Parent Comms
-Writer when loaded into a session — any skill whose name ends in
-`-voice-profile` is treated as a voice profile and applied silently.
-It can be loaded directly into Claude, ChatGPT, Gemini, or any other AI tool.
+Supply this file (paste its contents, or attach it) at the start of any
+future session where report comments, parent communications, or other
+feedback should be written in this voice — it works with any AI tool.
 
 ---
 
@@ -200,6 +207,14 @@ After saving (or if the teacher declines to save):
 
 ---
 
+## Evidence base
+- Goodall & Montgomery (2014), *Parental involvement to parental engagement: a continuum* — backs personalised, relationship-based communication over generic messaging, the core rationale for voice-matching
+  <https://eric.ed.gov/?id=EJ1039779>
+- AITSL, Australian Professional Standards for Teachers 7.3 — backs framing voice capture as supporting an ongoing, personally-invested family relationship, not a one-off template
+  <https://www.aitsl.edu.au/tools-resources/resource/engaging-parents-carers-illustration-of-practice>
+- Education Endowment Foundation (2018), *Working with Parents to Support Children's Learning* — backs personalised communication over generic broadcast messaging
+  <https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/supporting-parents>
+- Note: no source above studies AI-assisted voice capture directly — the link to better outcomes is inferential, extrapolated from broader personalisation research
 ## Reference files
-- This skill produces a `[teacher-name]-voice-profile` skill file, detected
-  and applied silently by Report Comment Writer and Parent Comms Writer
+- This skill produces a `[teacher-name]-voice-profile.md` reference file the
+  teacher can supply to any later drafting task to apply the same voice
