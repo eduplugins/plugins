@@ -1,16 +1,35 @@
 ---
 name: student-task-sheet
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
   Translates a teacher's lesson plan or assessment task into a clear,
-  student-facing document students can work from independently. Includes
-  instructions, scaffolds, success criteria in student language, and an
-  extension prompt. Works standalone or as a follow-on from Lesson Planner,
-  Unit of Work, or Assessment Outline. Checks for a student-task-sheet
-  template skill before applying the default structure. Trigger when a
-  teacher asks to create a student task sheet, student-facing instructions,
-  or a task handout.
+  student-facing document students can work from independently — instructions,
+  scaffolds, success criteria in student language, and a specific extension
+  prompt. Trigger when a teacher asks to create a student task sheet,
+  student-facing instructions, or a task handout. Works standalone; if a
+  lesson plan, unit, or assessment task is already in context it's used as
+  the source, otherwise the teacher supplies or describes one.
+keywords:
+  content-type: Teaching Resource
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Resource Generation
+    - Personalised Learning
+    - Curriculum & Lesson Planning
+  topics: Scaffolded Instruction
+  keyword:
+    - Sentence Starters
+    - Worked Example
+    - Success Criteria
+    - Extension Task
+    - Vocabulary Support
+references:
+  - "Australian Education Research Organisation (AERO)"
+  - "NSW Department of Education (explicit teaching technique guide)"
+  - "Australian Institute for Teaching and School Leadership (AITSL)"
+  - "Barak Rosenshine, American Educator (American Federation of Teachers)"
 ---
 
 # Student Task Sheet Creator
@@ -25,37 +44,28 @@ that students know what good looks like before they begin.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-year level, teaching context, and any template context from it silently.
-Do not ask the teacher for information the collator already holds.
+## Gotchas
+
+- **Success criteria should be checkable mid-task, not just readable once at
+  the top.** Phrase them so a student can literally check themselves against
+  each one while working, not only read them before starting.
+- **Scaffolding isn't binary.** If this task follows earlier ones in the same
+  unit, ask whether scaffolds should be lighter than last time rather than
+  defaulting to the same level of support every time.
+- **A worked first step often serves procedural or analytical tasks (maths,
+  text analysis) better than a sentence starter.** Sentence starters suit
+  writing and language tasks; branch to a modelled step for procedural ones
+  instead of defaulting to language scaffolds across the board.
 
 ---
 
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — which curriculum are you
-> working with, and what year levels do you teach?"
+## What this skill needs
 
-Store the answers and proceed. Do not ask again this session.
-
-Then ask working mode if not known:
-> "Would you prefer we build this together step by step, or would you like me
-> to ask a few questions and produce a full draft?"
-
-Once the teacher names their curriculum, resolve the BASE_URL and MCP_URL from
-this table and use them for all fetching in this session:
-
-| Curriculum | BASE_URL | MCP_URL | Region |
-|---|---|---|---|
-| Australian Curriculum v9 | `https://acv9.easedup.com` | `https://acv9.easedup.com/mcp` | Australia (Foundation–Year 10) |
-| Common Core State Standards | `https://common-core.easedup.com` | `https://common-core.easedup.com/mcp` | US (K–12 Maths & ELA/Literacy) |
-| UK National Curriculum | `https://uk-curriculum.easedup.com` | `https://uk-curriculum.easedup.com/mcp` | UK (Key Stages 1–4, Years 1–11) |
-
-If the teacher names a curriculum not in this table, note that it may not yet
-be available on EasedUP and proceed with whatever official documentation they
-can provide.
+- Curriculum and year level. If already known from earlier in this
+  conversation, don't ask again.
+- Working mode — ask if not already established:
+  > "Would you prefer we build this together step by step, or would you like
+  > me to ask a few questions and produce a full draft?"
 
 ---
 
@@ -76,8 +86,9 @@ If year level isn't already known:
 
 ## Step 2: Check for a template
 
-If a student task sheet template skill is loaded in this session, use its
-format profile instead of the default structure below.
+If the teacher has already supplied a task-sheet template or format profile
+— in this conversation or as a reference file — use it instead of the
+default structure below.
 
 ---
 
@@ -85,9 +96,11 @@ format profile instead of the default structure below.
 
 Before generating, ask:
 
-> "A couple of quick things — does this task need sentence starters or
-> scaffolds for students who need support? And are there students who'll
-> need an extension challenge once they're done?"
+> "A couple of quick things — does this task need sentence starters or a
+> worked example for students who need support? If this follows earlier
+> tasks in the same unit, should the scaffolding be lighter than last time?
+> And are there students who'll need an extension challenge once they're
+> done?"
 
 Use the answers to shape the Scaffolds and Extension sections. If the source
 document already makes differentiation clear, skip this question and apply
@@ -143,21 +156,27 @@ By the end of this task, you should be able to say:
 - "I can [criterion 2]"
 - "I can [criterion 3]"
 
-*(Match the lesson's success criteria — rewritten for a student reader)*
+*(Match the lesson's success criteria — rewritten for a student reader.
+Phrase each as a checklist item a student can tick off against their own
+work mid-task, not just read once before starting.)*
 
 ---
 
-**Sentence starters / scaffolds** *(include if relevant)*
+**Scaffolds** *(include if relevant)*
 
-[Include for writing tasks, analysis tasks, or tasks with a language demand.
-Omit if the teacher confirmed no scaffolds are needed.]
+Default to whichever fits the task's demand — don't apply both by default:
 
-To begin your response, you might write:
+*Sentence starters* — for writing, analysis, or other language-demand tasks:
 - "This text is arguing that… because…"
 - "One way [person/character/event] shows [quality] is…"
 - "I chose [option] because…"
 
-*(Only include starters relevant to this specific task — don't be generic)*
+*Worked first step* — for procedural or analytical tasks (e.g. maths,
+data, text analysis): model the first step in full so students see the
+method before continuing alone.
+
+*(Only include what's relevant to this specific task — don't be generic.
+Omit the whole section if the teacher confirmed no scaffolds are needed.)*
 
 ---
 
@@ -173,8 +192,9 @@ To begin your response, you might write:
 ---
 
 **Finished early?**
-[Specific extension activity — not "read your book." Something that extends
-the thinking of the task itself.]
+[Specific extension activity — not "read your book." Deepen the same
+learning goal the task is already targeting, rather than introducing
+unrelated content.]
 
 E.g. "If you've finished, try [specific extension prompt that goes deeper
 into the same concept]"
@@ -197,5 +217,24 @@ teacher will give you verbal feedback during the lesson."]
 
 After any adjustments, offer the natural next step:
 
-> "If you'd like a slide deck to go with this lesson, the EasedUP Slide Deck
-> skill can build one from the same plan."
+> "If you'd like a slide deck to go with this lesson, I can build one from
+> the same plan."
+
+---
+
+## Evidence base
+- AERO (2024), *Scaffold practice guide* — worked examples, process
+  worksheets, and annotated work samples, with scaffolds fading as students
+  gain proficiency.
+  <https://www.edresearch.edu.au/sites/default/files/2024-11/AERO-practice-guide-scaffold-practice-aa.pdf>
+- NSW Department of Education (2025), *Sharing learning intentions and
+  success criteria* — success criteria should be referred back to and
+  checked against throughout the task, not just read once at the start.
+  <https://education.nsw.gov.au/content/dam/main-education/documents/teaching-and-learning/curriculum/explicit-teaching/explicit-teaching-technique-guide-lisc-sharing.pdf>
+- AITSL, Standard 3 — professional basis for shaping learning resources to
+  the student audience and for challenging, goal-aligned extension work.
+  <https://www.aitsl.edu.au/standards>
+- Rosenshine (2012), *Principles of Instruction* — worked examples before
+  independent practice, and keeping working memory load manageable through
+  single-instruction steps.
+  <https://www.aft.org/ae/spring2012/rosenshine>

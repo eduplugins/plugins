@@ -1,15 +1,33 @@
 ---
 name: parent-comms
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
-  Drafts polished parent-facing communications in the teacher's voice.
-  Supports newsletters, curriculum updates, excursion notes, learning update
-  letters, end-of-term wrap-ups, and general class communications. Works best
-  with a voice profile skill loaded (any skill named [teacher-name]-voice-profile).
-  Can be used standalone for any teacher-to-family written communication. Trigger when a
-  teacher asks to write a newsletter, letter home, excursion note, learning
-  update, or any communication directed at families.
+  Drafts parent-facing communications in the teacher's own voice — class
+  newsletters, curriculum update letters, excursion/event notes, learning
+  updates, end-of-term wrap-ups, and learning concern letters. Applies a
+  supplied voice profile or writing sample when given one, otherwise writes
+  in warm, plain English. Trigger when a teacher asks to write a newsletter,
+  letter home, excursion note, permission note, learning update, or a letter
+  about a student's learning concerns.
+keywords:
+  content-type: Administrative Guidance
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Student-Teacher Comms & Feedback
+    - Family & Community Engagement
+  topics: Family And Community Engagement
+  keyword:
+    - Parent Newsletter
+    - Excursion Note
+    - Learning Update
+    - Learning Concern Letter
+    - End-Of-Term Wrap-Up
+references:
+  - "AITSL"
+  - "Education Endowment Foundation"
+  - "NSW Department of Education"
 ---
 
 # Parent Comms Writer
@@ -24,34 +42,25 @@ different backgrounds, languages, and levels of engagement with school.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read school name,
-year level, teaching context, and any established voice profile from it
-silently. Do not ask the teacher for information the collator already holds.
+## What this skill needs
 
----
-
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — what school and year level
-> are you writing for?"
-
-Store the answers and proceed. Do not ask again this session.
-
-Then ask working mode if not known:
-> "Would you prefer we build this together step by step, or would you like me
-> to ask a few questions and produce a full draft?"
+- School name, year level, teaching context, and (if already established) a
+  voice profile. If already known from earlier in this conversation, don't
+  ask again. Otherwise open with:
+  > "What school and year level are you writing for?"
+- Working mode — ask if not already established:
+  > "Would you prefer we build this together step by step, or would you like
+  > me to ask a few questions and produce a full draft?"
 
 ---
 
 ## Step 1: Check for voice profile
 
-If a voice profile skill is loaded in this session (any skill whose name ends
-in `-voice-profile`): apply the teacher's voice and register throughout. Do
-this silently — do not mention it.
+If a voice profile is already available in context — established earlier in
+this conversation or supplied as a reference file — apply the teacher's
+voice and register throughout. Do this silently — do not mention it.
 
-If no voice profile is loaded:
+If no voice profile is available:
 > "Would you like me to match your usual writing style? If so, paste a
 > sentence or two from a previous newsletter or letter and I'll match the
 > tone. If not, I'll write in clear, warm, plain English."
@@ -70,6 +79,11 @@ Ask if not clear:
 > a learning update, or something else? And what's the key message or
 > information to get across?"
 
+If the teacher mentions this term's communications have all been logistical
+or concern-driven, suggest a positive or appreciative update too — routine,
+warm contact (not only problem-driven contact) is what builds the strongest
+family partnerships.
+
 Also ask:
 > "Anything I should know about your families — for example, many
 > Culturally and Linguistically Diverse families, or a wide range of
@@ -77,7 +91,9 @@ Also ask:
 
 Store the family context and apply it throughout — simpler sentences, concrete
 examples, and no idioms if Culturally and Linguistically Diverse families or
-lower home literacy levels are noted.
+lower home literacy levels are noted. When CALD families are flagged, also
+offer a one-line translated-summary option or name an interpreter/contact
+point families can use if they need one.
 
 **Supported types:**
 
@@ -203,7 +219,10 @@ Any questions, please [contact method].
 **For all communications:**
 - Warm but not gushing
 - Plain English — no education jargon, no acronyms
-- Specific — vague positivity ("We've had a great term!") is forgettable
+- Specific — vague positivity ("We've had a great term!") is forgettable.
+  Reporting to families should be clear, accurate, and respectful, grounded
+  in specifics rather than summary — not just house style, but the
+  professional standard teachers are held to.
 - Accessible — write for a family with English as a second language,
   not just fluent native speakers. Short sentences. Active voice.
 - If Culturally and Linguistically Diverse families were noted: re-read
@@ -215,6 +234,9 @@ Any questions, please [contact method].
 - Describe behaviour and evidence — not character or potential
 - Frame the school as a partner, not an authority delivering a verdict
 - Always include a clear next step — families need to know what to do
+- Personalise every letter to this student and situation — generic,
+  templated language is both less caring and less effective at prompting
+  a family response than specific, individualised wording
 
 ---
 
@@ -226,5 +248,15 @@ Any questions, please [contact method].
 
 ---
 
+## Evidence base
+- AITSL, Australian Professional Standards for Teachers 5.5/7.3 — backs reporting to families "clearly, accurately and respectfully" using specifics, not vague summary
+  <https://www.aitsl.edu.au/tools-resources/resource/engaging-parents-carers-illustration-of-practice>
+- AITSL (2024), *Strengthening parent engagement to improve student outcomes* — backs routine, warm communication (not only concern-driven contact) as a lever for student outcomes
+  <https://www.aitsl.edu.au/research/spotlights/strengthening-parent-engagement-to-improve-student-outcomes>
+- Education Endowment Foundation (2018), *Working with Parents to Support Children's Learning* — backs plain, jargon-free, personalised communication over generic language, especially in concern letters
+  <https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/supporting-parents>
+- NSW Department of Education, *Strengthening family and community engagement in student learning* — backs concrete CALD-inclusive strategies (translated summaries, interpreters, varied channels)
+  <https://education.nsw.gov.au/content/dam/main-education/en/home/teaching-and-learning/curriculum/multicultural-education/culture-and-diversity/engaging-communities/Strengthening_family_and_community_engagement_in_student_learning_resource.pdf>
 ## Reference files
-- A loaded `[teacher-name]-voice-profile` skill — teacher voice for written outputs
+- A `[teacher-name]-voice-profile.md` reference file, if supplied — teacher
+  voice for written outputs

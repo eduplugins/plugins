@@ -1,15 +1,33 @@
 ---
 name: parent-curriculum-explainer
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
-  Translates curriculum content descriptions into plain English for families.
-  Explains what students are learning, why it matters at this stage, what it
-  looks like in practice, and how families can support at home. Suitable for
-  curriculum nights, newsletters, or unit overview letters. Always fetches
-  real curriculum content from EasedUP — never paraphrases from memory.
-  Trigger when a teacher asks to write a parent explainer, curriculum night
-  handout, newsletter blurb, or unit overview for families.
+  Translates curriculum content descriptions and achievement standards into
+  plain English for families — what students are learning, why it matters,
+  what it looks like in class, and how families can help at home. Always
+  grounds the explainer in real curriculum content, never paraphrased from
+  memory. Trigger when a teacher asks for a parent curriculum explainer,
+  curriculum night handout, newsletter blurb, or unit overview letter for
+  families.
+keywords:
+  content-type: Learning Objectives
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Family & Community Engagement
+    - Resource Generation
+  topics: Family And Community Engagement
+  keyword:
+    - Curriculum Night Handout
+    - Achievement Standard Translation
+    - Unit Overview Letter
+    - Plain-English Explainer
+references:
+  - "ACARA"
+  - "AITSL"
+  - "Alma Harris & Janet Goodall"
+  - "Education Endowment Foundation"
 ---
 
 # Parent Curriculum Explainer
@@ -21,43 +39,32 @@ system terminology.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-year level, subject, teaching context, and any established unit topic from
-it silently. Do not ask the teacher for information the collator already holds.
+## Gotchas
+- Home-support suggestions land better when tied to the child's *current,
+  specific* learning task, not generic advice like "read together" —
+  engagement research finds learning-focused suggestions outperform general
+  school-involvement advice.
+- For CALD or lower-literacy families, include at least one suggestion that
+  doesn't depend on English fluency or text — a conversation prompt in the
+  home language, or a hands-on or observational activity — alongside any
+  language-based ones.
 
 ---
 
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — which curriculum are you
-> working with, and what year levels do you teach?"
+## What this skill needs
 
-Store the answers and proceed. Do not ask again this session.
-
-Then ask working mode if not known:
-> "Would you prefer we build this together step by step, or would you like me
-> to ask a few questions and produce a full draft?"
-
-Once the teacher names their curriculum, resolve the BASE_URL and MCP_URL from
-this table and use them for all fetching in this session:
-
-| Curriculum | BASE_URL | MCP_URL | Region |
-|---|---|---|---|
-| Australian Curriculum v9 | `https://acv9.easedup.com` | `https://acv9.easedup.com/mcp` | Australia (Foundation–Year 10) |
-| Common Core State Standards | `https://common-core.easedup.com` | `https://common-core.easedup.com/mcp` | US (K–12 Maths & ELA/Literacy) |
-| UK National Curriculum | `https://uk-curriculum.easedup.com` | `https://uk-curriculum.easedup.com/mcp` | UK (Key Stages 1–4, Years 1–11) |
-
-If the teacher names a curriculum not in this table, note that it may not yet
-be available on EasedUP and proceed with whatever official documentation they
-can provide.
+- Curriculum, year level, subject, teaching context, and (if already
+  established) a unit topic. If already known from earlier in this
+  conversation, don't ask again.
+- Working mode — ask if not already established:
+  > "Would you prefer we build this together step by step, or would you like
+  > me to ask a few questions and produce a full draft?"
 
 ---
 
 ## Step 1: Understand the task
 
-If subject, year level, and topic are not already known from the collator, ask:
+If subject, year level, and topic are not already known, ask:
 > "What subject, year level, and topic or unit are you writing a parent
 > explainer for?"
 
@@ -71,25 +78,24 @@ Store the format choice and family context. Apply both throughout generation.
 
 ---
 
-## Step 2: Fetch curriculum content
+## Step 2: Establish curriculum content
 
-Fetch the content descriptions and achievement standards for the subject and
-year level. The explainer is grounded in the real curriculum — translated,
-not quoted. Never use training data for curriculum standards.
+Establish the content descriptions and achievement standards for the subject
+and year level. The explainer is grounded in the real curriculum —
+translated, not quoted. Never use training data for curriculum standards —
+use whatever curriculum lookup capability is available in this session, or
+ask the teacher to paste the relevant content if none is.
 
-Try MCP first (`get`, `search`, `get_all`) using the MCP_URL for this
-curriculum. If MCP is unavailable, fetch the relevant `.md` directly using
-the pattern `{BASE_URL}/{subject}/{year-level}.md` (e.g. `/english/year-3.md`)
-— if the exact subject or year slug is unclear, use the MCP `get_all` tool
-to list valid paths.
-
-Read the fetched content carefully and identify:
+Read the content carefully and identify:
 - The 3–5 most important things students are learning this unit
 - What the achievement standard says in plain terms
 - Any content with a clear real-world connection families can relate to
 
 Do not quote content descriptions verbatim — they are not written for a
-family audience. Translate them.
+family audience. Translate them. If unsure how much detail or tone is
+appropriate, ACARA's own parent-information guidance is a useful benchmark
+for how the curriculum authority itself expects this content to be pitched
+for families.
 
 ---
 
@@ -97,7 +103,10 @@ family audience. Translate them.
 
 Match format and tone to purpose. If Culturally and Linguistically Diverse
 families or lower home literacy levels are noted: use shorter sentences,
-simpler vocabulary, and concrete examples. Avoid idioms.
+simpler vocabulary, and concrete examples. Avoid idioms. Home-support
+suggestions should tie to what students are doing in this unit right now,
+not generic study advice — specific, task-linked suggestions are more
+likely to be acted on.
 
 ---
 
@@ -172,6 +181,11 @@ and its real-world relevance, and a warm close with contact details.]
 
 ## Step 4: Tone check
 
+This isn't just style: teachers are required to report to families clearly,
+accurately and respectfully, which means translating curriculum language
+into a form families can actually use — treat the acronym-and-jargon ban
+below as non-negotiable, not optional polish.
+
 Before delivering, verify:
 - No acronyms — not AC, HASS, ELA, KLA, CALD, VCAA, or any others
 - No content description codes
@@ -194,5 +208,17 @@ Before delivering, verify:
 After any adjustments, offer the natural next step:
 
 > "If you'd like to follow this up with a direct message or letter home —
-> for example, to introduce yourself or a new topic — the EasedUP Parent
-> Communications skill can help with that."
+> for example, to introduce yourself or a new topic — I can help draft
+> that too."
+
+---
+
+## Evidence base
+- ACARA, *Parent/carer information* (V9 Australian Curriculum) — backs translating achievement standards for families as the curriculum authority's own stated purpose
+  <https://www.australiancurriculum.edu.au/help/parent-information>
+- AITSL, Australian Professional Standards for Teachers 5.5 — backs the jargon/acronym ban as a clarity obligation, not just style
+  <https://www.aitsl.edu.au/standards>
+- Harris & Goodall (2007), *Do parents know they matter? Engaging all parents in learning* — backs steering home-support suggestions toward the child's specific current learning, not generic school involvement
+  <https://dera.ioe.ac.uk/6639/1/DCSF-RW004.pdf>
+- Education Endowment Foundation (2018), *Working with Parents to Support Children's Learning* — backs specific, low-burden home-support suggestions over generic encouragement
+  <https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/supporting-parents>

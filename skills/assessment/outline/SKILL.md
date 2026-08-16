@@ -1,16 +1,34 @@
 ---
 name: assessment-outline
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
-  Writes a formal assessment task outline — everything a student needs to
-  understand the task and everything a teacher needs to administer it.
-  Includes task description, conditions, mode, curriculum links, and a
-  pointer to the rubric. Always fetches live curriculum content and
-  achievement descriptors from EasedUP before generating. Works standalone
-  or as part of the assessment sequence with Rubric Builder. Trigger when a
-  teacher needs to write up a formal assessment task for any subject or year
-  level.
+  Writes a formal assessment task outline — task description, conditions,
+  mode, curriculum links, and a pointer to the rubric — clear enough for a
+  student to follow and precise enough for a colleague to administer
+  consistently. Always grounds the outline in real curriculum content and
+  achievement descriptors before generating; never invents them. Trigger
+  when a teacher needs to write up a formal assessment task, brief, or task
+  sheet for any subject or year level. Works standalone.
+keywords:
+  content-type: Assessment
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Curriculum & Lesson Planning
+    - Assessment And Feedback
+    - Personalised Learning
+  topics: Assessment Design
+  keyword:
+    - Task Outline
+    - Assessment Conditions
+    - Task Brief
+    - Curriculum Links
+    - Achievement Descriptors
+references:
+  - "NSW Education Standards Authority (NESA)"
+  - "Australian Curriculum, Assessment and Reporting Authority (ACARA)"
+  - "Australian Institute for Teaching and School Leadership (AITSL)"
 ---
 
 # Assessment Outline
@@ -21,70 +39,63 @@ enough for a teacher or colleague to administer it consistently.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-year level, teaching context, pedagogy framework, working mode, and any
-template or differentiation context from it silently. Do not ask the teacher
-for information the collator already holds.
+## Gotchas
+
+- Assessment purpose isn't just formative vs summative — NESA also names
+  assessment *as* learning (students monitoring and taking responsibility for
+  their own progress). Surface that as a real third option, not a subset of
+  formative, when asking about purpose.
+- Accessibility is a first-order assessment principle, not an optional
+  differentiation add-on — check it early rather than leaving it as the last
+  planning question.
+- A formal, summative outline like this is meant to sit inside a broader mix
+  that also includes informal, formative checks (e.g. a quick exit-ticket
+  style check) — don't let it stand in as a class's only assessment evidence.
 
 ---
 
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — which curriculum are you
-> working with, and what year levels do you teach?"
+## What this skill needs
 
-Store the answers and proceed. Do not ask again this session.
-
-Then ask working mode if not known:
-> "Would you prefer we build this together step by step, or would you like me
-> to ask a few questions and produce a full draft?"
-
-Once the teacher names their curriculum, resolve the BASE_URL and MCP_URL from
-this table and use them for all fetching in this session:
-
-| Curriculum | BASE_URL | MCP_URL | Region |
-|---|---|---|---|
-| Australian Curriculum v9 | `https://acv9.easedup.com` | `https://acv9.easedup.com/mcp` | Australia (Foundation–Year 10) |
-| Common Core State Standards | `https://common-core.easedup.com` | `https://common-core.easedup.com/mcp` | US (K–12 Maths & ELA/Literacy) |
-| UK National Curriculum | `https://uk-curriculum.easedup.com` | `https://uk-curriculum.easedup.com/mcp` | UK (Key Stages 1–4, Years 1–11) |
-
-If the teacher names a curriculum not in this table, note that it may not yet
-be available on EasedUP and proceed with whatever official documentation they
-can provide.
+- Curriculum, year level, teaching context, and (if relevant) a pedagogy
+  framework, working mode, template, or differentiation context. If already
+  known from earlier in this conversation, don't ask again.
+- Working mode — ask if not already established:
+  > "Would you prefer we build this together step by step, or would you like
+  > me to ask a few questions and produce a full draft?"
 
 ---
 
-## Fetch curriculum content
-Try the MCP server first (`get`, `search`, `get_all`) using the MCP_URL above.
-If MCP is unavailable, fetch the relevant `.md` directly using the pattern
-`{BASE_URL}/{subject}/{year-level}.md` (e.g. `/english/year-3.md`) — if the
-exact subject or year slug is unclear, use the MCP `get_all` tool to list
-valid paths, or check the BASE_URL root. Never use training data for
-curriculum standards.
+## Establish curriculum content
+Establish the real curriculum content for this subject and year level, using
+whatever curriculum lookup capability is available in this session. Never
+use training data for curriculum standards — if no lookup capability is
+available, ask the teacher to paste the relevant standards.
 
-For an assessment outline, fetch **both**:
+For an assessment outline, establish **both**:
 - The curriculum standards for the subject/year level — to ground the task
   description in what students have been learning
 - The achievement descriptors for the subject/year level — to anchor the
-  rubric descriptors that Rubric Builder will use next
+  rubric descriptors a rubric will use next
 
-Fetching both now means Rubric Builder can proceed immediately without
-fetching again.
+Establishing both now means a rubric can be built immediately afterward
+without re-establishing them.
 
 ---
 
 ## Planning questions
 
-Ask these before generating. Skip any already answered by the collator or
-established earlier in the session.
+Ask these before generating. Skip any already established earlier in the
+session.
 
 1. What subject, year level, and unit or topic is this assessment for?
-   *(Skip if already known from collator or session context.)*
-2. Is this formative (for learning, lower stakes) or summative (of learning,
-   for reporting)?
-3. What **mode** suits this task and class?
+   *(Skip if already known from earlier in the conversation.)*
+2. Is this assessment *for* learning (formative, lower stakes), *as* learning
+   (students monitoring and reflecting on their own progress), or *of*
+   learning (summative, for reporting)? Tasks can combine purposes — e.g. a
+   summative task with a built-in self-assessment or reflection component.
+3. What **mode** suits this task and class? This formal outline is one piece
+   of a broader assessment mix — informal, formative checks (e.g. an exit
+   ticket) can cover the rest.
    Options: written response / oral presentation / multimodal / practical
    demonstration / digital product / performance / portfolio / other
 4. What are the **conditions**?
@@ -93,8 +104,11 @@ established earlier in the session.
    - Resources permitted (open book? notes? internet?)
 5. When is it due or administered, and does it carry a weighting in the
    broader assessment schedule?
-6. Are there **differentiation** adjustments needed — modified conditions,
-   alternative modes, or additional scaffolds for specific students?
+6. Does this task need **accessibility adjustments** for any students —
+   modified conditions, alternative modes, or additional scaffolds? Treat
+   this as a required check, not an optional extra: assessment must be
+   accessible to all students, not just those who happen to fit the default
+   task design.
 
 ---
 
@@ -116,7 +130,8 @@ or adjust — don't ask the teacher to name them from memory.
 **Subject:**
 **Year Level:**
 **Unit / Topic:**
-**Task type:** Formative / Summative
+**Task type:** Formative / Summative [note any built-in self-assessment or
+reflection component]
 **Mode:** [Written / Oral / Multimodal / Practical / Digital / Performance]
 
 **Curriculum links:**
@@ -125,8 +140,9 @@ or adjust — don't ask the teacher to name them from memory.
 [Code + full description text for each relevant standard]
 
 *[Achievement descriptors label]:*
-[Relevant excerpt from achievement descriptor — quote exactly from fetched
-content. This is what the Rubric Builder will use to write grade descriptors.]
+[Relevant excerpt from achievement descriptor — quote exactly from the
+content established above. This is what a rubric will use to write grade
+descriptors.]
 
 **Task overview:**
 1–2 sentences in plain language. What is the task?
@@ -168,22 +184,28 @@ Students will receive [written / verbal / annotated] feedback by [date].
 
 ---
 
+## Validity check before delivering
+
+Before presenting the outline, confirm the task description still matches
+the exact curriculum standards established above — that there is clear
+alignment between the standards, the task, and what the rubric will assess.
+If the task has drifted from that content while drafting, revise the task
+description rather than the curriculum links.
+
+---
+
 ## Curriculum terminology
 
-### When the collator is loaded
-Use the collator's terminology values exactly:
-- TERMINOLOGY_CONTENT → label for curriculum standards
-- TERMINOLOGY_STANDARDS → label for achievement descriptors
+If specific terminology has already been established earlier in this
+conversation (labels for curriculum standards or achievement descriptors),
+replace the bracketed labels in the output template above with those terms.
 
-Replace the bracketed labels in the output template above with these terms.
-
-### When running standalone
-Use neutral language:
+Otherwise use neutral language:
 - "curriculum standards" or "curriculum links"
 - "achievement descriptors"
 
 Mirror any terminology the teacher has already used in the conversation.
-Do not default to the language of any one curriculum.
+Do not default to the language of any one curriculum without a reason to.
 
 ---
 
@@ -204,17 +226,35 @@ pass. Close with:
 
 ---
 
-## Rubric Builder handoff
+## Evidence base
+- NESA, *Assessment principles* (current) — backs fetching and quoting live
+  curriculum content rather than relying on recall, and the validity check
+  above (alignment between syllabus, task, and criteria).
+  <https://curriculum.nsw.edu.au/assessment-and-reporting/assessment-principles>
+- NESA, *Purpose of assessment* (current) — backs distinguishing assessment
+  for/as/of learning rather than a formative/summative binary.
+  <https://curriculum.nsw.edu.au/assessment-and-reporting/assessment-in-stage-6/purpose-of-assessment>
+- ACARA, *Planning, teaching, assessing and reporting* (current) — backs
+  fetching both curriculum standards and achievement descriptors, since
+  achievement standards anchor the whole assess-and-report cycle.
+  <https://www.australiancurriculum.edu.au/help/f-10-curriculum-overview/planning--teaching--assessing-and-reporting>
+- AITSL, Australian Professional Standards for Teachers, Standard 5.1
+  (current) — backs the range of modes offered and the expectation that
+  formal, summative tasks sit alongside informal, formative approaches.
+  <https://www.aitsl.edu.au/standards>
+---
+
+## Offer to build the rubric next
 
 After generating the outline:
 
-> "Would you like me to build the rubric for this task now? I have the
-> [achievement descriptors label] already fetched — I can move straight into
+> "Would you like me to build the rubric for this task now? I already have
+> the [achievement descriptors label] established — I can move straight into
 > writing the grade descriptors without starting over."
 
-If yes, pass the following to Rubric Builder:
-- The fetched achievement descriptors (exact text)
+If yes, carry forward directly:
+- The achievement descriptors already established (exact text)
 - The task title, mode, and conditions
 - Any differentiation context from this session
 
-Rubric Builder does not need to fetch curriculum again.
+There's no need to re-establish curriculum content — it's already in context.

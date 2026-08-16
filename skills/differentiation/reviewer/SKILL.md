@@ -1,13 +1,33 @@
 ---
 name: differentiation-reviewer
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
-  Audits an existing lesson plan or unit for differentiation and inclusion gaps.
-  Identifies who is well-served, where gaps exist, and provides specific,
-  actionable suggestions for each gap. Does not rewrite the plan — gives the
-  teacher targeted adjustments that preserve their planning work. Works
-  standalone or called by the EasedUP Edu Collator for a review task.
+  Audits an existing lesson plan or unit against AITSL Standard 1.5 for
+  differentiation and inclusion gaps — support, extension, EAL/D, and
+  specific learning needs — and returns specific, prioritised adjustments
+  rather than a rewrite. Trigger on requests like "check this lesson for
+  differentiation gaps," "review this unit for EAL/D support," or "does this
+  plan work for my learning-support students." Works standalone.
+keywords:
+  content-type: Pedagogical Guidance
+  thematic-category: Special Education Requirements
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Personalised Learning
+    - Curriculum & Lesson Planning
+    - Teacher Training & Personal Development
+  topics: Differentiated Instruction
+  keyword:
+    - Differentiation Review
+    - Inclusion Gap Analysis
+    - EAL/D Support
+    - Universal Design For Learning
+references:
+  - "AITSL"
+  - "Department of Education, Victoria"
+  - "ACARA"
+  - "CAST"
 ---
 
 # Differentiation Reviewer
@@ -21,56 +41,39 @@ Name the specific adjustment, where it goes in the lesson, and who it serves.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-year level, teaching context, pedagogy framework, working mode, and any
-student or class context silently. Note the EAL/D terminology used by the
-collator's curriculum (e.g. EAL/D for Australian Curriculum, EAL for UK,
-ELL for US) and apply it consistently throughout this session. Do not ask
-the teacher for information the collator already holds.
+## What this skill needs
+
+- Curriculum, year level, teaching context, and (if relevant) a pedagogy
+  framework, working mode, or student/class context. If already known from
+  earlier in this conversation, don't ask again.
+- Working mode — ask if not already established:
+  > "Would you prefer we work through this together, or would you like me to
+  > run the full review and share it in one go?"
+
+Note the EAL/D terminology conventionally used for the stated curriculum and
+apply it consistently throughout this session:
+
+| Curriculum | EAL term |
+|---|---|
+| Australian Curriculum | EAL/D |
+| Common Core / US curricula | ELL |
+| UK National Curriculum | EAL |
+
+If the curriculum isn't in this table, use "English language learners" as a
+neutral term, or mirror whatever term the teacher uses.
 
 ---
 
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — which curriculum are you
-> working with, and what year levels do you teach?"
+## Establish curriculum content
+Only establish curriculum content if it adds genuine value to the review —
+for many reviews the plan itself contains enough curriculum context to make
+specific suggestions.
 
-Store the answers and proceed. Do not ask again this session.
-
-Then ask working mode if not known:
-> "Would you prefer we work through this together, or would you like me to
-> run the full review and share it in one go?"
-
-Once the teacher names their curriculum, resolve the BASE_URL and MCP_URL from
-this table and use them for all fetching in this session:
-
-| Curriculum | BASE_URL | MCP_URL | Region | EAL term |
-|---|---|---|---|---|
-| Australian Curriculum v9 | `https://acv9.easedup.com` | `https://acv9.easedup.com/mcp` | Australia (Foundation–Year 10) | EAL/D |
-| Common Core State Standards | `https://common-core.easedup.com` | `https://common-core.easedup.com/mcp` | US (K–12 Maths & ELA/Literacy) | ELL |
-| UK National Curriculum | `https://uk-curriculum.easedup.com` | `https://uk-curriculum.easedup.com/mcp` | UK (Key Stages 1–4, Years 1–11) | EAL |
-
-If the teacher names a curriculum not in this table, note that it may not yet
-be available on EasedUP, use "English language learners" as a neutral term,
-and proceed with whatever official documentation they can provide.
-
----
-
-## Fetch curriculum content
-Only fetch if it adds genuine value to the review — for many reviews the plan
-itself contains enough curriculum context to make specific suggestions.
-
-Fetch when: the plan lacks curriculum detail, the review would benefit from
+Do this when: the plan lacks curriculum detail, the review would benefit from
 understanding the learning progression, or knowing what "deeper" or "simpler"
-looks like for this content would sharpen the suggestions.
-
-If fetching: try the MCP server first (`get`, `search`, `get_all`) using the
-MCP_URL above. If MCP is unavailable, fetch the relevant `.md` directly using
-the pattern `{BASE_URL}/{subject}/{year-level}.md` (e.g. `/english/year-3.md`)
-— if the exact subject or year slug is unclear, use the MCP `get_all` tool to
-list valid paths. Never use training data for curriculum standards.
+looks like for this content would sharpen the suggestions. Use whatever
+curriculum lookup capability is available in this session, or ask the
+teacher. Never use training data for curriculum standards.
 
 ---
 
@@ -92,11 +95,17 @@ Then ask:
 
 Analyse systematically across these dimensions:
 
+Suggestions land more precisely when tied to *what* is being adjusted —
+content, process, product, or environment (AITSL Standard 1.5's own frame).
+Note which of the four a gap and its fix sit in where it sharpens the point.
+
 **1. Universal design — does the plan work for most learners as written?**
 - Is the learning intention clear and accessible?
 - Is there more than one way to engage with the content?
 - Is there more than one way for students to show understanding?
 - Are instructions clear enough for independent workers?
+- (This dimension previews the UDL lens offered at the end of the review —
+  see Step 4.)
 
 **2. Students requiring support**
 - Is there scaffolding built in, or does a student needing help have
@@ -109,7 +118,7 @@ Analyse systematically across these dimensions:
   the task quickly and correctly?
 - Does the extension deepen thinking rather than just produce more of the same?
 
-**4. English language learners** *(use curriculum-appropriate term from collator or standalone fallback)*
+**4. English language learners** *(use the curriculum-appropriate term from the table above)*
 - Is key vocabulary explicitly taught or supported?
 - Are there visual, spoken, or home-language supports?
 - Is the reading demand of task instructions proportionate?
@@ -118,6 +127,10 @@ Analyse systematically across these dimensions:
 - Are there points in the lesson where sensory, physical, or processing
   differences could create barriers?
 - Are there flexible options for how students engage or respond?
+- If the teacher has flagged a student on an NCCD (or equivalent)
+  adjustment level, check that the plan's differentiation is documented
+  clearly enough to serve as evidence of "quality differentiated teaching" —
+  the recognised base tier of adjustment — not just present in intent.
 
 ---
 
@@ -168,6 +181,10 @@ what to keep.
 If the teacher can only act on one or two suggestions, which matter most?
 Flag the top 2 adjustments by impact.
 
+If no specific students were named in Step 1, state plainly that gaps are
+identified at the level of "a student needing support" in the abstract —
+not a diagnosis of any real student's needs.
+
 ---
 
 ## Step 4: Framework offer
@@ -176,10 +193,13 @@ After delivering the review, make a soft offer — don't apply a framework
 without the teacher's say-so:
 
 > "If it would be useful, I can also look at this plan through a specific
-> lens — for example, UDL (Universal Design for Learning) looks at how
-> flexibly the plan is designed from the ground up, rather than as add-ons.
-> [If PEDAGOGY_FRAMEWORK is set: or I could revisit it through your
-> [framework] lens.] Would either of those be helpful?"
+> lens — for example, UDL (Universal Design for Learning) checks whether
+> engagement, representation, and action & expression are flexible and
+> bias-free by design, giving students agency, rather than added as
+> after-the-fact accommodations.
+> [If a pedagogy framework has already been established earlier in this
+> conversation: or I could revisit it through your [framework] lens.]
+> Would either of those be helpful?"
 
 Only apply a framework if the teacher says yes.
 
@@ -188,9 +208,8 @@ Only apply a framework if the teacher says yes.
 ## Step 5: Offer next steps
 
 > "Here's the review. The highest-priority adjustments are [X and Y].
-> Would you like me to draft any of these additions directly — or if you'd
-> like a fuller set of differentiated materials built out for this lesson,
-> the Differentiation Suggester can take it from here."
+> Would you like me to draft any of these additions directly — or a fuller
+> set of differentiated materials built out for this lesson?"
 
 ---
 
@@ -202,6 +221,24 @@ Only apply a framework if the teacher says yes.
 - Respectful of the teacher's existing work — additions, not rewrites
 - Prioritised — teachers are busy; what matters most comes first
 
+---
+
+## Evidence base
+- AITSL (2018) — Standard 1.5 requires differentiating content, process,
+  product and environment for the full range of abilities; this is the
+  frame the review's dimensions and suggestions operationalise.
+  <https://www.aitsl.edu.au/teach/improve-practice/in-the-classroom/differentiation>
+- Department of Education, Victoria / NCCD policy (2015–) — "quality
+  differentiated teaching" is the recognised base tier of adjustment under
+  national policy, backing the support and specific-learning-needs checks.
+  <https://www2.education.vic.gov.au/pal/nccd-students-with-disability/policy>
+- ACARA (2022, Australian Curriculum v9) — reasonable adjustments must be
+  individually determined from assessment and consultation, not applied
+  as one-size-fits-all — why abstract gaps are flagged as such.
+  <https://www.australiancurriculum.edu.au/student-diversity/students-with-disability>
+- CAST (2024) — UDL Guidelines v3.0 frame flexibility around learner
+  agency and removing bias-driven barriers, not just design-time choice.
+  <https://udlguidelines.cast.org/>
 ---
 
 ## Reference files

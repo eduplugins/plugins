@@ -1,17 +1,35 @@
 ---
 name: slide-deck
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
-  Builds a structured lesson presentation from a lesson plan or unit content.
-  Produces a slide-by-slide outline including speaker notes — what to show
-  and what to say. Checks for a slide-deck-template skill before applying
-  default structure. Works standalone or as a follow-on from Lesson Planner.
-  If no lesson plan is in context, fetches curriculum content to ground
-  learning intentions and success criteria. Does not produce a file — outputs
-  the slide structure and content for the teacher to build in their preferred
-  tool (PowerPoint, Google Slides, Canva, Keynote). Trigger when a teacher
-  asks to create a slide deck, lesson presentation, or lesson slides.
+  Builds a structured lesson presentation from a lesson plan or unit content
+  — a slide-by-slide outline with speaker notes covering what to show and
+  what to say. Trigger when a teacher asks to create a slide deck, lesson
+  presentation, or lesson slides. Works standalone; if a lesson plan is
+  already in context it's used as the source, otherwise curriculum content
+  is gathered to ground learning intentions and success criteria. Does not
+  produce a file — outputs slide structure and content for the teacher to
+  build in PowerPoint, Google Slides, Canva, or Keynote.
+keywords:
+  content-type: Teaching Resource
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Resource Generation
+    - Curriculum & Lesson Planning
+    - Personalised Learning
+  topics: Cognitive Load
+  keyword:
+    - Speaker Notes
+    - Slide Style
+    - Coherence Principle
+    - Chunking
+    - Working Memory
+references:
+  - "Australian Education Research Organisation (AERO)"
+  - "Centre for Education Statistics and Evaluation (CESE), NSW Department of Education"
+  - "Richard E. Mayer and Logan Fiorella, in The Cambridge Handbook of Multimedia Learning (Cambridge University Press)"
 ---
 
 # Slide Deck Creator
@@ -22,44 +40,38 @@ and speaker notes — which the teacher builds in their preferred presentation
 tool.
 
 Good lesson slides are not documents put on a screen. They are prompts,
-visuals, and anchors that support the teacher's voice — not replace it.
-The default is minimal: headings, key terms, steps, and sentence starters.
-Large text blocks only appear when students genuinely need to read from
-the slide.
+visuals, and anchors that support the teacher's voice — not replace it,
+because extraneous on-screen text competes with the teacher's spoken
+explanation for the same limited working memory (cognitive load theory;
+Mayer's coherence principle). The default is minimal: headings, key terms,
+steps, and sentence starters. Large text blocks only appear when students
+genuinely need to read from the slide.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-year level, teaching context, and any template context from it silently.
-Do not ask the teacher for information the collator already holds.
+## Gotchas
+
+- **It isn't text itself that hurts learning — it's extraneous material
+  mixed with essential content.** Even a Text-heavy deck should isolate a
+  passage or excerpt on its own slide rather than blending it with other
+  instructional content on the same slide.
+- **Chunking is why "one idea per slide" is ruthless, not stylistic.**
+  Working memory holds only a handful of chunks at a time — one slide
+  carrying two ideas is asking students to hold both in the same limited
+  channel as the teacher's voice.
 
 ---
 
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — which curriculum are you
-> working with, and what year levels do you teach?"
+## What this skill needs
 
-Store the answers and proceed. Do not ask again this session.
-
-Then ask working mode if not known:
-> "Would you prefer we build this together step by step, or would you like me
-> to ask a few questions and produce a full draft?"
-
-Once the teacher names their curriculum, resolve the BASE_URL and MCP_URL from
-this table and use them for all fetching in this session:
-
-| Curriculum | BASE_URL | MCP_URL | Region |
-|---|---|---|---|
-| Australian Curriculum v9 | `https://acv9.easedup.com` | `https://acv9.easedup.com/mcp` | Australia (Foundation–Year 10) |
-| Common Core State Standards | `https://common-core.easedup.com` | `https://common-core.easedup.com/mcp` | US (K–12 Maths & ELA/Literacy) |
-| UK National Curriculum | `https://uk-curriculum.easedup.com` | `https://uk-curriculum.easedup.com/mcp` | UK (Key Stages 1–4, Years 1–11) |
-
-If the teacher names a curriculum not in this table, note that it may not yet
-be available on EasedUP and proceed with whatever official documentation they
-can provide.
+- Curriculum and year level. If already known from earlier in this
+  conversation, don't ask again.
+- Either a lesson plan already in context, or the subject/topic to fetch
+  curriculum content for.
+- Working mode (build together step by step, or produce a full draft) —
+  ask if not already established:
+  > "Would you prefer we build this together step by step, or would you like
+  > me to ask a few questions and produce a full draft?"
 
 ---
 
@@ -75,17 +87,13 @@ If standalone:
 
 ---
 
-## Step 2: Fetch curriculum content (standalone only)
+## Step 2: Ground in curriculum content (standalone only)
 
-If no lesson plan is in context, fetch curriculum content before generating
-to ground the learning intentions and success criteria. Never invent these
-from training data.
-
-Try MCP first (`get`, `search`, `get_all`) using the MCP_URL for this
-curriculum. If MCP is unavailable, fetch the relevant `.md` directly using
-the pattern `{BASE_URL}/{subject}/{year-level}.md` (e.g. `/english/year-3.md`)
-— if the exact subject or year slug is unclear, use the MCP `get_all` tool
-to list valid paths.
+If no lesson plan is in context, establish the relevant curriculum content
+before generating, to ground the learning intentions and success criteria.
+Never invent standards from training data — use whatever curriculum lookup
+capability is available in this session, or ask the teacher to paste the
+relevant content descriptions and achievement standards if none is.
 
 Surface the relevant content descriptions and achievement standards as the
 basis for the learning intentions. Confirm with the teacher before proceeding:
@@ -98,11 +106,10 @@ basis for the learning intentions. Confirm with the teacher before proceeding:
 
 ## Step 3: Check for a template
 
-If a `slide-deck-template` skill is loaded in this session, apply its
-structure, section order, and any fixed elements (school logo placeholder,
-colour scheme notes, font conventions) silently.
-
-If no template is loaded, use the best-practice structure below.
+If the teacher has already supplied a template structure, section order, or
+fixed elements (school logo placeholder, colour scheme notes, font
+conventions) — in this conversation or as a reference file — apply it
+silently. Otherwise use the best-practice structure below.
 
 ---
 
@@ -124,7 +131,8 @@ Ask these as a single conversational exchange — not a form:
 > - **Guided** — dot points, numbered steps, sentence starters. Slides
 >   support student work.
 > - **Text-heavy** — longer passages, excerpts, or quotes where students
->   need to read from the slide.
+>   need to read from the slide. Even here, isolate the passage on its own
+>   slide rather than mixing it with other instructional content.
 >
 > Are there particular resources, images, or video links to include?
 >
@@ -153,8 +161,10 @@ No sentences. Teacher voice fills the gaps.
 **Guided style:** numbered steps, dot points, sentence starters. Enough
 detail that a student can follow without the teacher explaining each slide.
 
-**Text-heavy style:** full sentences, passages, or excerpts where needed.
-Reserve for slides students genuinely need to read from — not as a default.
+**Text-heavy style:** full sentences, passages, or excerpts where needed, each
+isolated on its own slide. Reserve for slides students genuinely need to
+read from — not as a default, and never mixed with other content on the
+same slide.
 
 ---
 
@@ -291,15 +301,32 @@ next lesson.]"
 After any adjustments, offer the natural next step if not already done
 this session:
 
-> "If you'd like a student task sheet to go alongside this lesson, the
-> EasedUP Student Task Sheet skill can build one from the same plan."
+> "If you'd like a student task sheet to go alongside this lesson, I can
+> build one from the same plan."
 
 ---
 
 ## Principles
 
-- One idea per slide — ruthlessly
+- One idea per slide — ruthlessly. Chunking supports working memory: one
+  idea per slide, not one slide per fact.
 - Default to minimal — add text only when students need to read it
 - Speaker notes are what the teacher says, not what the slide says
 - Explicit teaching slides have a worked example or model, not just information
 - Every slide has a purpose — no filler slides
+
+---
+
+## Evidence base
+- AERO (2023–25), *Managing cognitive load optimises learning* — backs
+  chunking content and reserving worked examples/models for structured
+  teaching rather than dense on-screen text.
+  <https://www.edresearch.edu.au/summaries-explainers/explainers/managing-cognitive-load-optimises-learning>
+- CESE, NSW DoE (2017), *Cognitive load theory* — the ~4-chunk working
+  memory limit behind "one idea per slide" and the Minimal-style default.
+  <https://education.nsw.gov.au/about-us/education-data-and-research/cese/publications/literature-reviews/cognitive-load-theory>
+- Mayer & Fiorella (2014), coherence principle, *Cambridge Handbook of
+  Multimedia Learning* — excluding extraneous material from a slide aids
+  learning (23/23 experimental tests); the basis for keeping text-heavy
+  slides isolated rather than mixed with other content.
+  <https://www.cambridge.org/core/books/abs/cambridge-handbook-of-multimedia-learning/principles-for-reducing-extraneous-processing-in-multimedia-learning-coherence-signaling-redundancy-spatial-contiguity-and-temporal-contiguity-principles/CD5B7AE1279A9AB81F8EEBB53DBEC86E>

@@ -1,15 +1,37 @@
 ---
 name: pbl-unit
-version: 1.0.2
-released: 2025-06-05
+version: 1.1.0
+released: 2026-08-16
 description: >
   Creates a complete project-based learning (PBL) unit structured around a
   driving question, real-world context, inquiry phases, milestones, and a
-  public product. Curriculum links are mapped throughout — not bolted on at
-  the end. Differentiation is integrated into each phase. Works standalone
-  or via the EasedUP Edu Collator. Always fetches curriculum content from
-  EasedUP before generating. For inquiry-based learning units without a
-  product or public audience focus, use the IBL Unit skill instead.
+  genuine public product for a real audience, with curriculum links mapped
+  throughout — not bolted on at the end — and differentiation integrated
+  into each phase. Trigger on requests like "build a PBL unit on local
+  water quality," "design a project with a public product for Year 8
+  science," or "create a project-based unit with a real audience." Works
+  standalone and always grounds the unit in curriculum content before
+  generating. For inquiry-based learning units without a product or public
+  audience focus, an inquiry-based-learning unit fits better than a PBL unit.
+keywords:
+  content-type: Lesson/Unit Plan
+  thematic-category: Education Objectives And Materials
+  use-case-theme: Student Learning And Performance
+  use-case:
+    - Curriculum & Lesson Planning
+    - Resource Generation
+    - Personalised Learning
+  topics: Project-Based Learning
+  keyword:
+    - Project-Based Learning
+    - Driving Question
+    - Public Product
+    - Gold Standard PBL
+references:
+  - "Buck Institute for Education / PBLWorks"
+  - "Condliffe et al. (MDRC)"
+  - "Corwin / John Hattie"
+  - "AERO"
 ---
 
 # PBL Unit Creator
@@ -25,50 +47,51 @@ Your job is to make sure the answer to both is yes.
 
 ---
 
-## Collator context
-If the EasedUP Edu Collator is loaded in this session, read curriculum,
-year level, teaching context, pedagogy framework, working mode, and any
-differentiation needs or cross-curricular context silently. Do not ask the
-teacher for information the collator already holds.
+## Gotchas
+
+- **PBL's evidence is real but implementation-sensitive — treat well-scaffolded
+  PBL with strong milestones as the version the evidence supports, not a
+  loosely-facilitated project.** Meta-analytic effect sizes for problem/
+  project-based learning are moderate-to-strong, but a careful K-12 literature
+  review found the base "promising but not proven," with weaker results in
+  maths and literacy and real implementation burden on teachers. Milestones
+  and check-ins (already built into Phase 2) matter more than they might look —
+  don't treat them as optional scaffolding.
+- **"Finding Out" needs explicit teaching for new skills, not investigation
+  alone.** Where the skill-building activity covers something genuinely new
+  to students, model and guide it first before students apply it
+  independently in their investigation — consistent with the same
+  guided-vs-open evidence pattern that applies to inquiry generally: students
+  without strong prior knowledge of the topic do better with structure first.
+  This is a lean, not a hard rule — confident, experienced investigators can
+  move straight to independent work.
+- **Critique & Revision and a genuine audience are load-bearing, not optional
+  extras.** PBL's own field-standard design model (Gold Standard PBL) treats
+  critique/revision and a public product for a real audience as essential
+  elements, not nice-to-haves — a nominal audience ("share with the class")
+  doesn't carry the same weight as an external one. Make both required in
+  the unit, not example bullets a teacher might skip.
 
 ---
 
-## Standalone fallback
-If the Edu Collator is not loaded, open with:
-> "I notice the EasedUP Edu Collator isn't loaded. You can get the full skill
-> pack at skills.easedup.com. In the meantime — which curriculum are you
-> working with, and what year levels do you teach?"
+## What this skill needs
 
-Store the answers and proceed. Do not ask again this session.
-
-Then ask working mode if not known:
-> "Would you prefer we build this together step by step, or would you like me
-> to ask a few questions and produce a full draft?"
-
-Once the teacher names their curriculum, resolve the BASE_URL and MCP_URL from
-this table and use them for all fetching in this session:
-
-| Curriculum | BASE_URL | MCP_URL | Region |
-|---|---|---|---|
-| Australian Curriculum v9 | `https://acv9.easedup.com` | `https://acv9.easedup.com/mcp` | Australia (Foundation–Year 10) |
-| Common Core State Standards | `https://common-core.easedup.com` | `https://common-core.easedup.com/mcp` | US (K–12 Maths & ELA/Literacy) |
-| UK National Curriculum | `https://uk-curriculum.easedup.com` | `https://uk-curriculum.easedup.com/mcp` | UK (Key Stages 1–4, Years 1–11) |
-
-If the teacher names a curriculum not in this table, note that it may not yet
-be available on EasedUP and proceed with whatever official documentation they
-can provide.
+- Curriculum, year level, teaching context, and (if relevant) a pedagogy
+  framework or differentiation needs. If already known from earlier in this
+  conversation, don't ask again.
+- Working mode — ask if not already established:
+  > "Would you prefer we build this together step by step, or would you like
+  > me to ask a few questions and produce a full draft?"
 
 ---
 
-## Fetch curriculum content
-Fetch content descriptions for all relevant subjects. PBL units are often
-cross-curricular — fetch each learning area that will be genuinely represented.
-
-Try the MCP server first (`get`, `search`, `get_all`) using the MCP_URL above.
-If MCP is unavailable, fetch the relevant `.md` directly using the pattern
-`{BASE_URL}/{subject}/{year-level}.md` (e.g. `/english/year-3.md`) — if the
-exact subject or year slug is unclear, use the MCP `get_all` tool to list
-valid paths. Never use training data for curriculum standards.
+## Establish curriculum content
+Establish content descriptions for all relevant subjects. PBL units are often
+cross-curricular — cover each learning area that will be genuinely
+represented. Use whatever curriculum lookup capability is available in this
+session; if none is, ask the teacher to paste the relevant content
+descriptions and achievement standards. Never invent standards from training
+data.
 
 Also note achievement standards for each subject represented — these anchor
 the summative assessment at the end of the unit.
@@ -85,7 +108,10 @@ real-world context yet, offer 2–3 directions based on the fetched curriculum
 before asking them to choose.
 
 1. What is the real-world context, local issue, or theme?
-2. Who is the audience for the final product? Real audiences create genuine purpose.
+2. Who is the audience for the final product? Push for a real external
+   audience where at all possible — a genuine audience is one of PBL's
+   essential design elements, not an optional extra; "share with the class"
+   is a fallback, not the goal.
 3. What is the approximate duration — number of weeks or lessons?
 4. What subjects are being woven in? Which is primary?
 5. What form should the public product take?
@@ -132,13 +158,13 @@ propose 2–3 options and ask them to choose or adapt.
 **Curriculum links:**
 
 *[Subject 1] — Curriculum standards:*
-[Codes and descriptions from EasedUP fetch]
+[Codes and descriptions from the relevant curriculum]
 
 *[Subject 2] — Curriculum standards (if cross-curricular):*
-[Codes and descriptions from EasedUP fetch]
+[Codes and descriptions from the relevant curriculum]
 
 *Achievement standards addressed:*
-[For each subject — relevant excerpt, sourced from EasedUP]
+[For each subject — relevant excerpt]
 
 ---
 
@@ -174,13 +200,18 @@ needed to answer the driving question.
 
 *Activities:*
 - [Research task / investigation / expert input / field experience]
-- [Skill-building activity tied to a specific curriculum standard]
+- [Skill-building activity tied to a specific curriculum standard — where
+  the skill is genuinely new to students, model and guide it explicitly
+  before they apply it independently in the investigation]
 - [Collaborative sense-making activity]
 
 *Curriculum addressed:* [Standards addressed in this phase]
 
 *Milestones / checkpoints:*
-- [What the teacher checks at mid-point — e.g. research notes, planning doc]
+- [What the teacher checks at mid-point — e.g. research notes, planning doc.
+  If Mathematics is the primary subject, plan more frequent check-ins here —
+  the evidence base for PBL is thinner and implementation harder in maths
+  than in humanities or science.]
 
 *Differentiation:*
 - Support: [e.g. structured research scaffold, curated source list]
@@ -209,7 +240,9 @@ needed to answer the driving question.
 
 *Activities:*
 - [A complicating question, new data, or a contrasting perspective]
-- [Peer critique / feedback protocol]
+- A structured critique and revision protocol on the draft product — this
+  is a required element of the unit, not an optional bullet: [specific
+  protocol, e.g. gallery walk with feedback stems, peer review rubric]
 - [Drafting or prototyping the public product]
 
 *Curriculum addressed:* [Standards addressed in this phase]
@@ -268,8 +301,9 @@ After delivering the unit, make a soft offer:
 > I can also look at it through a specific pedagogy lens — for example,
 > UDL to check flexibility is built in for all learners from the ground up,
 > or another framework if your school has a particular focus.
-> [If PEDAGOGY_FRAMEWORK is set: I could also revisit it through your
-> [framework] lens.] Would any of that be useful?"
+> [If a pedagogy framework has already been established earlier in this
+> conversation: I could also revisit it through your [framework] lens.]
+> Would any of that be useful?"
 
 Only apply a framework lens if the teacher says yes.
 
@@ -282,6 +316,26 @@ Only apply a framework lens if the teacher says yes.
 > student-facing task sheets for any phase, or flesh out any phase in
 > more detail."
 
+---
+
+## Evidence base
+- Buck Institute for Education / PBLWorks (2019) — Gold Standard PBL's
+  seven essential elements (challenging question, sustained inquiry,
+  authenticity, voice & choice, critique & revision, reflection, public
+  product) are the design specification this unit structure follows.
+  <https://www.pblworks.org/what-is-pbl/gold-standard-project-design>
+- Condliffe et al. / MDRC (2017) — K-12 PBL evidence is "promising but not
+  proven," weaker in maths and literacy, and implementation-demanding for
+  teachers — backing the milestone and maths-specific check-in guidance.
+  <https://eric.ed.gov/?id=ED578933>
+- Hattie / Visible Learning MetaX — problem-based learning has a
+  moderate-to-strong effect on achievement, describing PBL broadly rather
+  than validating this skill's specific Gold Standard implementation.
+  <https://www.visiblelearningmetax.com/influences/view/problem-based_learning>
+- AERO (2023) — guided/explicit instruction outperforms minimally guided
+  approaches for novices building foundational knowledge, backing the
+  explicit-teaching note in Phase 2's skill-building activity.
+  <https://www.edresearch.edu.au/summaries-explainers/explainers/explicit-instruction>
 ---
 
 ## Reference files
