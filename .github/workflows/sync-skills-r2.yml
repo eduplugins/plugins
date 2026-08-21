@@ -35,12 +35,12 @@ jobs:
           R2_ENDPOINT: https://ad7888b1dca6e504752a8b4bc23c5a9b.r2.cloudflarestorage.com
         run: |
           set -euo pipefail
-          aws s3 cp dist/skills.json s3://site/site/index.json \
+          aws s3 cp dist/skills-index.json s3://site/skills.json \
             --endpoint-url "$R2_ENDPOINT" \
             --content-type application/json
-          aws s3 cp connectors.json s3://site/site/connectors.json \
+          aws s3 cp connectors.json s3://site/connectors.json \
             --endpoint-url "$R2_ENDPOINT" \
             --content-type application/json
-          aws s3 cp plugins.json s3://site/site/plugins.json \
+          aws s3 cp plugins.json s3://site/plugins.json \
             --endpoint-url "$R2_ENDPOINT" \
             --content-type application/json
