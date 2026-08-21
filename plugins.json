@@ -24,7 +24,11 @@
       "planning/unit-of-work",
       "planning/unit-outline"
     ],
-    "connectors": ["australian-curriculum-v9", "common-core-state-standards", "uk-national-curriculum"]
+    "connectors": [
+      "australian-curriculum-v9",
+      "common-core-state-standards",
+      "uk-national-curriculum"
+    ]
   },
   {
     "slug": "relief-teacher",
@@ -37,7 +41,11 @@
       "planning/lesson-planner",
       "planning/student-task-sheet"
     ],
-    "connectors": ["australian-curriculum-v9", "common-core-state-standards", "uk-national-curriculum"]
+    "connectors": [
+      "australian-curriculum-v9",
+      "common-core-state-standards",
+      "uk-national-curriculum"
+    ]
   },
   {
     "slug": "learning-support-teacher",
@@ -51,7 +59,11 @@
       "differentiation/suggester",
       "planning/student-task-sheet"
     ],
-    "connectors": ["australian-curriculum-v9", "common-core-state-standards", "uk-national-curriculum"]
+    "connectors": [
+      "australian-curriculum-v9",
+      "common-core-state-standards",
+      "uk-national-curriculum"
+    ]
   },
   {
     "slug": "curriculum-coordinator",
@@ -71,7 +83,11 @@
       "planning/unit-of-work",
       "planning/unit-outline"
     ],
-    "connectors": ["australian-curriculum-v9", "common-core-state-standards", "uk-national-curriculum"]
+    "connectors": [
+      "australian-curriculum-v9",
+      "common-core-state-standards",
+      "uk-national-curriculum"
+    ]
   },
   {
     "slug": "school-leader",
@@ -83,6 +99,10 @@
       "communication/parent-curriculum-explainer",
       "communication/voice-style-capture"
     ],
-    "connectors": ["australian-curriculum-v9", "common-core-state-standards", "uk-national-curriculum"]
+    "connectors": [
+      "australian-curriculum-v9",
+      "common-core-state-standards",
+      "uk-national-curriculum"
+    ]
   }
 ]
