@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "relief-teacher",
+  "description": "Toolkit for casual and relief teachers covering an unfamiliar class — build or adapt a day pack, put together a lesson and student task sheet on short notice, check a plan for support needs, and run a quick end-of-lesson check.",
+  "license": "MIT",
+  "homepage": "https://github.com/eduplugins/plugins",
+  "repository": "https://github.com/eduplugins/plugins"
+}

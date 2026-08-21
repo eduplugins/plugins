@@ -1,9 +1,0 @@
-{
-  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
-  "mcpServers": {
-    "australian-curriculum-v9": {
-      "type": "streamable-http",
-      "url": "https://acv9.eduplugins.com/mcp"
-    }
-  }
-}

@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "school-leader",
+  "description": "Toolkit for principals, deputies, and school administrators — draft whole-school and community communications in a consistent voice, explain curriculum changes to families, and keep an eye on the school's assessment calendar.",
+  "license": "MIT",
+  "homepage": "https://github.com/eduplugins/plugins",
+  "repository": "https://github.com/eduplugins/plugins"
+}
