@@ -4,6 +4,7 @@
     "name": "Example Educator Plugin",
     "description": "Example plugin included to demonstrate the EduPlugins repo structure — bundles the example skill and connector. Replace or remove once you've added your own.",
     "skills": [
+      "core/edu-plugin-orchestrator",
       "assessment/exit-ticket",
       "assessment/feedback-comment-bank",
       "assessment/outline",
