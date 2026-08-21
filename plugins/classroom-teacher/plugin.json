@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "classroom-teacher",
+  "description": "Full-time generalist teacher toolkit — plan lessons and units, build assessments and rubrics, differentiate for mixed-readiness classes, run inquiry/project units, and draft parent- and report-facing communications in your own voice.",
+  "license": "MIT",
+  "homepage": "https://github.com/eduplugins/plugins",
+  "repository": "https://github.com/eduplugins/plugins"
+}

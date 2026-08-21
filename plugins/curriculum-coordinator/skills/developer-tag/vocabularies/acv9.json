@@ -1,0 +1,136 @@
+{
+  "jurisdiction": "Australia",
+  "curriculum": "Australian Curriculum (v9)",
+  "keys": {
+    "Format": {
+      "values": [
+        { "value": "Text" },
+        { "value": "Video" },
+        { "value": "Interactive" },
+        { "value": "Image" },
+        { "value": "Downloadable", "notes": "Describes the primary artifact, not any download link that happens to appear on the page." },
+        { "value": "Online", "notes": "Narrow value, not a synonym for 'has a URL' — nearly every item has a URL and still doesn't carry this tag. Reserve it for content whose delivery mechanism is itself the point (a hosted platform/tool), not plain web-hosted text or video." },
+        { "value": "Audio" },
+        { "value": "Course" },
+        { "value": "Assessment", "notes": "Media-format signal only. Before Content Type existed as a separate key here, this was the only place assessment-purpose signal could go, so it was under-applied on plain downloadable quizzes/rubrics; that purpose signal now belongs primarily on Content Type (`Assessment`), with this tag reserved for content whose delivery format is itself assessment-flavoured (e.g. an online test platform)." }
+      ]
+    },
+    "Content Type": {
+      "values": [
+        { "value": "Teaching Resource", "notes": "Default for worksheets, slide decks, lesson materials, student-facing tasks." },
+        { "value": "Assessment", "notes": "Quizzes, rubrics, progress-monitoring/tracking templates, formal tests." },
+        { "value": "Lesson/Unit Plan", "notes": "A plan for delivering teaching, not the teaching material itself." },
+        { "value": "Curriculum Reference", "notes": "The curriculum framework document itself (content descriptions, achievement standards)." },
+        { "value": "Learning Objectives", "notes": "Statements of what students should learn/know." },
+        { "value": "Pedagogical Guidance", "notes": "How-to-teach guidance, teaching strategies." },
+        { "value": "Administrative Guidance", "notes": "School-operations guidance — rare in Scootle's catalogue." },
+        { "value": "Student-Generated Content", "notes": "Student-authored work." },
+        { "value": "Teacher-Generated Content", "notes": "Content authored by a teacher rather than a publisher." }
+      ]
+    },
+    "Thematic Category": {
+      "values": [
+        { "value": "Education Objectives And Materials", "notes": "Default for direct teaching/curriculum content." },
+        { "value": "School Management" },
+        { "value": "Further And Higher Education" },
+        { "value": "Special Education Requirements", "notes": "Takes priority over every other value when content is SEND-specific." },
+        { "value": "Wellbeing And Behaviour" },
+        { "value": "Teaching And Leadership", "notes": "CPD, professional development." }
+      ]
+    },
+    "Use Case Theme": {
+      "values": [
+        { "value": "Student Learning And Performance", "notes": "Default for direct teaching/curriculum content." },
+        { "value": "School Management" },
+        { "value": "School Performance And Quality" }
+      ]
+    },
+    "Use Case": {
+      "values": [
+        { "value": "Curriculum & Lesson Planning" },
+        { "value": "Personalised Learning" },
+        { "value": "Resource Generation" },
+        { "value": "Teacher Training & Personal Development" },
+        { "value": "Formative Assessment" },
+        { "value": "Student Progress Tracking" },
+        { "value": "Student-Teacher Comms & Feedback" },
+        { "value": "Monitoring School Performance" },
+        { "value": "Monitoring Pupil Behaviour & Wellbeing" }
+      ]
+    },
+    "School Phase": {
+      "values": [
+        { "value": "Primary", "pairs_with": ["Foundation", "1", "2", "3", "4", "5", "6"], "notes": "= the Australian Curriculum v9's own Foundation-Year 6 band." },
+        { "value": "Secondary", "pairs_with": ["7", "8", "9", "10"], "notes": "= the Australian Curriculum v9's own Year 7-10 band, where HASS/Technologies/Arts formally split into named subjects." },
+        { "value": "Senior Secondary", "pairs_with": ["11", "12"], "notes": "Beyond ACv9's own Foundation-10 scope; state-based senior-secondary content observed in the wider Scootle corpus." },
+        { "value": "Non-Specific/All", "notes": "For genuinely phase-agnostic content. Stage / Level has no non-specific value in this vocabulary — omit that key rather than inventing one." }
+      ]
+    },
+    "Stage / Level": {
+      "values": [
+        { "value": "F", "notes": "Foundation year. Not 'Foundation' — the literal stored token is 'F'. ≈ age 4-5; UK: EYFS (Reception); US: Kindergarten (K)." },
+        { "value": "1", "notes": "≈ age 5-7, with '2'; UK: Key Stage 1 (Years 1-2); US: Grades 1-2." },
+        { "value": "2", "notes": "≈ age 5-7, with '1'; UK: Key Stage 1 (Years 1-2); US: Grades 1-2." },
+        { "value": "3", "notes": "≈ age 7-11, with '4'-'6'; UK: Key Stage 2 (Years 3-6); US: Grades 3-5." },
+        { "value": "4", "notes": "≈ age 7-11, with '3', '5', '6'; UK: Key Stage 2 (Years 3-6); US: Grades 3-5." },
+        { "value": "5", "notes": "≈ age 7-11, with '3', '4', '6'; UK: Key Stage 2 (Years 3-6); US: Grades 3-5." },
+        { "value": "6", "notes": "≈ age 7-11, with '3'-'5'; UK: Key Stage 2 (Years 3-6); US: Grades 3-5." },
+        { "value": "7", "notes": "≈ age 11-14, with '8', '9'; UK: Key Stage 3 (Years 7-9); US: Grades 6-8." },
+        { "value": "8", "notes": "≈ age 11-14, with '7', '9'; UK: Key Stage 3 (Years 7-9); US: Grades 6-8." },
+        { "value": "9", "notes": "≈ age 11-14, with '7', '8'; UK: Key Stage 3 (Years 7-9); US: Grades 6-8." },
+        { "value": "10", "notes": "≈ age 14-16; UK: Key Stage 4 (Years 10-11); US: Grades 9-10. The ACv9-scoped portion of this band — Australia's own Year 11 falls outside ACv9." },
+        { "value": "11", "notes": "Beyond ACv9's own Foundation-10 scope (see School Phase's Senior Secondary). ≈ age 16-18; UK: Key Stage 5 / Post-16 / T-Levels; US: Grades 11-12." },
+        { "value": "12", "notes": "Beyond ACv9's own Foundation-10 scope (see School Phase's Senior Secondary). ≈ age 16-18; UK: Key Stage 5 / Post-16 / T-Levels; US: Grades 11-12." }
+      ]
+    },
+    "Subject": {
+      "values": [
+        { "value": "English", "notes": "UK: English; US: English Language Arts & Literacy." },
+        { "value": "Science", "notes": "UK: Science; no US Common Core standard." },
+        { "value": "History", "notes": "Split-subject form of HASS from Year 7. UK: History; no dedicated US Common Core standard — see US's 'Literacy in History/Social Studies, Science, and Technical Subjects' for literacy-skills-only overlap.", "pairs_with": ["Humanities and Social Sciences"] },
+        { "value": "Humanities and Social Sciences", "notes": "Combined F–6 umbrella; formally splits into Civics and Citizenship / Economics and Business / Geography / History for Years 7–10 — but tag the umbrella alongside the split subject at every year level, not only F–6. UK: roughly Geography/History; US: 'Literacy in History/Social Studies, Science, and Technical Subjects' covers literacy skills only, not content.", "avoid": ["Humanities and social sciences"] },
+        { "value": "Mathematics", "notes": "UK: Mathematics; US: Mathematics." },
+        { "value": "Design and Technologies", "notes": "Co-occurs with Digital Technologies often enough to treat as a pair even though they're formally separate learning areas. UK: Design and Technology; no US Common Core standard.", "pairs_with": ["Digital Technologies"], "avoid": ["Design and technologies"] },
+        { "value": "The Arts", "notes": "Umbrella; individual arts subjects (Dance, Drama, Media Arts, Music, Visual Arts) are tagged alongside it, not instead of it. UK: roughly Art and Design / Music; no US Common Core standard." },
+        { "value": "Geography", "notes": "Split-subject form of HASS. UK: Geography; no dedicated US Common Core standard.", "pairs_with": ["Humanities and Social Sciences"] },
+        { "value": "Health and Physical Education", "notes": "UK: Physical Education; no US Common Core standard.", "avoid": ["Health and physical education"] },
+        { "value": "Digital Technologies", "notes": "UK: Computing; no US Common Core standard.", "pairs_with": ["Design and Technologies"], "avoid": ["Digital technologies"] },
+        { "value": "Visual Arts", "pairs_with": ["The Arts"] },
+        { "value": "Civics and Citizenship", "notes": "Split-subject form of HASS. UK: Citizenship; no US Common Core standard.", "pairs_with": ["Humanities and Social Sciences"], "avoid": ["Civics and citizenship"] },
+        { "value": "Drama", "pairs_with": ["The Arts"] },
+        { "value": "Music", "pairs_with": ["The Arts"] },
+        { "value": "Media Arts", "pairs_with": ["The Arts"] },
+        { "value": "Dance", "pairs_with": ["The Arts"] },
+        { "value": "Languages", "notes": "Umbrella; specific languages (Japanese, Hindi, Indonesian, Chinese, French, Modern Greek, Framework for Aboriginal Languages and Torres Strait Islander Languages) are also used directly. UK: Languages; no US Common Core standard." },
+        { "value": "Economics and Business", "notes": "Split-subject form of HASS.", "pairs_with": ["Humanities and Social Sciences"] },
+        { "value": "Japanese", "pairs_with": ["Languages"] },
+        { "value": "Hindi", "pairs_with": ["Languages"] },
+        { "value": "Indonesian", "pairs_with": ["Languages"] },
+        { "value": "Chinese", "pairs_with": ["Languages"] },
+        { "value": "French", "pairs_with": ["Languages"] },
+        { "value": "Framework for Aboriginal Languages and Torres Strait Islander Languages", "pairs_with": ["Languages"] },
+        { "value": "Work studies" },
+        { "value": "Modern Greek", "pairs_with": ["Languages"] }
+      ]
+    },
+    "Access Profile": {
+      "values": [
+        { "value": "Generic", "notes": "Assessed, no specific accessibility feature to report." },
+        { "value": "Unknown", "notes": "Not assessed." },
+        { "value": "Device independence", "notes": "Needs actual page evidence (e.g. mentions of captions, a transcript, an accessible/described version) — see references/accessibility.md's evidence-based exception; not just Video/Interactive format." },
+        { "value": "Hearing independence", "notes": "Needs actual page evidence (e.g. mentions of captions, a transcript, an accessible/described version) — see references/accessibility.md's evidence-based exception; not just Video/Interactive format." },
+        { "value": "Colour independence", "notes": "Needs actual page evidence (e.g. mentions of captions, a transcript, an accessible/described version) — see references/accessibility.md's evidence-based exception; not just Video/Interactive format." },
+        { "value": "Captions" },
+        { "value": "Alternative text" },
+        { "value": "High contrast display" },
+        { "value": "Reading order" },
+        { "value": "Visual independence" },
+        { "value": "High contrast audio" },
+        { "value": "None" },
+        { "value": "Audio description" },
+        { "value": "Large print" },
+        { "value": "Structural navigation" }
+      ]
+    }
+  }
+}

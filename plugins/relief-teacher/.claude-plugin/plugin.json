@@ -1,0 +1,6 @@
+{
+  "name": "relief-teacher",
+  "displayName": "Relief / Casual Teacher",
+  "description": "Toolkit for casual and relief teachers covering an unfamiliar class — build or adapt a day pack, put together a lesson and student task sheet on short notice, check a plan for support needs, and run a quick end-of-lesson check.",
+  "skills": "./skills/"
+}

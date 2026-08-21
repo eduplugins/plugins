@@ -1,0 +1,196 @@
+{
+  "jurisdiction": "United Kingdom",
+  "curriculum": "UK National Curriculum",
+  "keys": {
+    "Format": {
+      "values": [
+        { "value": "Text" },
+        { "value": "Video" },
+        { "value": "Interactive" },
+        { "value": "Image" },
+        { "value": "Downloadable", "notes": "Describes the primary artifact, not any download link that happens to appear on the page." },
+        { "value": "Online", "notes": "Narrow value, not a synonym for 'has a URL' — reserve it for content whose delivery mechanism is itself the point (a hosted platform/tool)." },
+        { "value": "Audio" },
+        { "value": "Course" },
+        { "value": "Assessment", "notes": "Media-format signal only (e.g. an online quiz tool) — the resource-purpose signal for assessments belongs on Content Type (`Past Papers`, `Quizzes`, `Assessment Criteria`), not here." }
+      ]
+    },
+    "Content Type": {
+      "values": [
+        { "value": "Teacher And Learning Resources", "notes": "Default for worksheets, slide decks, lesson materials, pupil-facing tasks." },
+        { "value": "Administrative Guidance", "notes": "School-operations guidance: admissions, data protection, funding, governance." },
+        { "value": "Learning Objectives", "notes": "Statements of what pupils should learn/know." },
+        { "value": "Guidance", "notes": "General guidance not fitting a more specific type (often inspection- or evidence-review-style reports). Corpus-observed: roughly 40% of `Guidance` items also carry a `Pedagogical Guidance`/`Pedagogical/Teaching Guidance` value alongside — this is a real combination, not the redundant-generic-tag anti-pattern (see format-and-purpose.md's 'one value per item' section for the distinction and the content signal to decide by)." },
+        { "value": "National Curriculum", "notes": "The curriculum framework document itself." },
+        { "value": "Pedagogical Guidance", "notes": "How-to-teach guidance, teaching strategies, intervention evidence." },
+        { "value": "Past Papers", "notes": "Exam papers, test frameworks, assessment materials." },
+        { "value": "Pedagogical/Teaching Guidance", "notes": "Near-duplicate of Pedagogical Guidance — prefer that spelling for new content." },
+        { "value": "Teacher Generated Content" },
+        { "value": "Marked", "notes": "Marked/annotated pupil work." },
+        { "value": "Student Generated Content", "notes": "Observed on Datasets, not Files." },
+        { "value": "Progression Map" },
+        { "value": "Quality Assurance" },
+        { "value": "Lesson Materials" },
+        { "value": "Student Workbook" },
+        { "value": "Lesson Plan" },
+        { "value": "Feedback" },
+        { "value": "Quizzes" },
+        { "value": "Assessment Criteria" },
+        { "value": "Student Worksheet" },
+        { "value": "Handwriting Practise" },
+        { "value": "Student Observations" },
+        { "value": "Worksheets" }
+      ],
+      "use_case_bundles": {
+        "Teacher And Learning Resources": {
+          "thematic_category": "Education Objectives And Materials",
+          "use_case_theme": "Student Learning And Performance",
+          "use_case": ["Curriculum & Lesson Planning", "Resource Generation", "Teacher Training & Personal Development", "Student Progress Tracking", "Personalised Learning", "Formative Assessment", "Student-Teacher Comms & Feedback"],
+          "notes": "Corpus-observed 7-value Use Case bundle for teaching-resource content — apply it in full as one atomic decision, don't cherry-pick the subset that seems to fit this particular item. This is every Use Case value except the admin/monitoring cluster (`Managing Education Organisation Policies And Obligations`, `Monitoring School Performance`, `Monitoring Pupil Behaviour & Wellbeing`, `Managing School Policies And Obligations`, `Managing Finacial And Funding Matters`) and `Assessment And Feedback`."
+        },
+        "Past Papers": {
+          "content_type_bundle": ["Teacher And Learning Resources", "Learning Objectives", "Past Papers"],
+          "thematic_category": "Education Objectives And Materials",
+          "use_case_theme": "Student Learning And Performance",
+          "use_case": ["Curriculum & Lesson Planning", "Resource Generation", "Teacher Training & Personal Development", "Student Progress Tracking", "Personalised Learning", "Formative Assessment", "Student-Teacher Comms & Feedback"],
+          "notes": "Test/mark-scheme items: `content_type_bundle` means Content Type itself is corpus-observed as multi-valued here — emit all three values together, not just `Past Papers` alone. Use Case takes the same 7-value bundle as `Teacher And Learning Resources`."
+        }
+      },
+      "theme_default": {
+        "thematic_category": "Education Objectives And Materials",
+        "use_case_theme": "Student Learning And Performance",
+        "notes": "The Thematic Category/Use Case Theme pair for every Content Type that has no `use_case_bundles` entry above and doesn't match one of thematic-and-use-case.md's named exceptions — roughly three-quarters of the corpus (`Guidance`, `Pedagogical Guidance`/`Pedagogical/Teaching Guidance`, `Learning Objectives`, `National Curriculum`, `Teacher Generated Content`, and more). Apply this pair as the default read on both keys, not a from-scratch judgement call each time — only deviate where thematic-and-use-case.md's exceptions fire."
+      },
+      "use_case_default_pool": {
+        "pool": ["Curriculum & Lesson Planning", "Resource Generation", "Teacher Training & Personal Development", "Student Progress Tracking", "Personalised Learning", "Formative Assessment", "Student-Teacher Comms & Feedback", "Monitoring School Performance"],
+        "sparse_or_empty_when": [
+          "the item is a subject/inspection *report* — a review of how a subject or the school system is being taught/performing/inspected across many schools, not a resource for one classroom — even when Content Type itself reads as teaching-flavoured (e.g. `Teacher Generated Content` used for a subject report)",
+          "the item is a privacy notice, consent form, or other compliance/data-protection/administrative-process document",
+          "Content Type is `Administrative Guidance` or `Quality Assurance`"
+        ],
+        "notes": "Use for every Content Type *without* a literal `use_case_bundles` entry (that map stays reserved for its two exact, corpus-verified atomic bundles — don't pattern-match it onto lookalikes). Default is dense, not sparse: pick the 2-7 values from `pool` that this specific item is actually true of — don't leave the field empty just because Content Type lacks a `use_case_bundles` entry, and don't import the whole pool wholesale either, that's reserved for the literal bundle matches. Fall to sparse/empty only when one of `sparse_or_empty_when` fires — that list is short and shape-based (what the document is *for*), not a Content Type lookup."
+      }
+    },
+    "Thematic Category": {
+      "values": [
+        { "value": "Education Objectives And Materials", "notes": "Default for direct teaching/curriculum content — pairs with Content Type `Teacher And Learning Resources`, `Past Papers`, `Learning Objectives`, `National Curriculum`." },
+        { "value": "School Management", "notes": "Admissions, funding, governance, data protection, operations." },
+        { "value": "Further And Higher Education", "notes": "Post-16/FE-specific guidance." },
+        { "value": "Special Education Requirements", "notes": "SEND-specific content of any Content Type — takes priority over every other value here when the content is SEND-specific, even if it's also pedagogical or administrative in nature." },
+        { "value": "School Attendance" },
+        { "value": "Wellbeing And Behaviour", "notes": "Pastoral, safeguarding, pupil wellbeing/behaviour policy." },
+        { "value": "Teaching And Leadership", "notes": "CPD, school leadership, teacher development — distinct from pupil-facing Education Objectives And Materials." },
+        { "value": "Administrative Guidance", "notes": "Rare — School Management is usually used instead for this kind of content." }
+      ]
+    },
+    "Use Case Theme": {
+      "values": [
+        { "value": "Student Learning And Performance", "notes": "Default for direct teaching/curriculum content — pairs with Thematic Category `Education Objectives And Materials` on most items." },
+        { "value": "School Management", "notes": "Admin/operations content — pairs with Thematic Category `School Management`." },
+        { "value": "School Performance And Quality", "notes": "Monitoring/inspection-flavoured content." }
+      ]
+    },
+    "Use Case": {
+      "values": [
+        { "value": "Curriculum & Lesson Planning" },
+        { "value": "Personalised Learning" },
+        { "value": "Resource Generation" },
+        { "value": "Teacher Training & Personal Development" },
+        { "value": "Formative Assessment" },
+        { "value": "Student Progress Tracking" },
+        { "value": "Student-Teacher Comms & Feedback" },
+        { "value": "Managing Education Organisation Policies And Obligations", "notes": "Admin-specific; preferred over the 'Managing School Policies' variant." },
+        { "value": "Monitoring School Performance" },
+        { "value": "Monitoring Pupil Behaviour & Wellbeing" },
+        { "value": "Managing School Policies And Obligations", "notes": "Near-duplicate of 'Managing Education Organisation Policies And Obligations' — the latter is more common." },
+        { "value": "Managing Finacial And Funding Matters", "notes": "Real spelling in the live vocabulary — 'Finacial', not 'Financial'. Reproduce exactly." },
+        { "value": "Assessment And Feedback" }
+      ]
+    },
+    "School Phase": {
+      "values": [
+        { "value": "Primary", "pairs_with": ["Key Stage 1", "Key Stage 2"], "notes": "= the UK National Curriculum's own Primary (Years 1-6)." },
+        { "value": "Secondary", "pairs_with": ["Key Stage 3", "Key Stage 4"], "notes": "= the UK National Curriculum's own Secondary (Stages 3-4)." },
+        { "value": "Non-Specific/All", "notes": "The correct explicit value for genuinely phase-agnostic content — use this, don't omit the tag.", "pairs_with": ["Non-Specific/All"] },
+        { "value": "Post-16", "pairs_with": ["Key Stage 5", "T-Levels"], "notes": "Beyond the UK National Curriculum's own coverage; part of the wider Post-16/T-Level framework." },
+        { "value": "Early Years Foundation", "pairs_with": ["Early Years Foundation Stage"], "notes": "Beyond the UK National Curriculum's own coverage; part of the separate EYFS statutory framework." },
+        { "value": "Reception" }
+      ]
+    },
+    "Stage / Level": {
+      "values": [
+        { "value": "Key Stage 2", "notes": "≈ age 7-11; AU: Years 3-6; US: Grades 3-5." },
+        { "value": "Key Stage 3", "notes": "≈ age 11-14; AU: Years 7-9; US: Grades 6-8." },
+        { "value": "Key Stage 4", "notes": "≈ age 14-16; AU: Year 10 (Australia's own Year 11 falls outside ACv9); US: Grades 9-10." },
+        { "value": "Key Stage 1", "notes": "≈ age 5-7; AU: Years 1-2; US: Grades 1-2." },
+        { "value": "Non-Specific/All" },
+        { "value": "T-Levels", "notes": "Post-16 vocational. ≈ age 16-18; AU: state-based senior secondary (Years 11-12; not part of ACv9); US: Grades 11-12." },
+        { "value": "Key Stage 5", "notes": "≈ age 16-18; AU: state-based senior secondary (Years 11-12; not part of ACv9); US: Grades 11-12." },
+        { "value": "Early Years Foundation Stage", "notes": "Note the different spelling from School Phase's 'Early Years Foundation' — this key uses the full '...Stage' form. ≈ age 4-5; AU: Foundation (F); US: Kindergarten (K)." }
+      ]
+    },
+    "Subject": {
+      "values": [
+        { "value": "English", "notes": "AU: English; US: English Language Arts & Literacy." },
+        { "value": "Science", "notes": "AU: Science; no US Common Core standard." },
+        { "value": "History", "notes": "AU: split-subject form of Humanities and Social Sciences; no dedicated US Common Core standard — see US's 'Literacy in History/Social Studies, Science, and Technical Subjects' for literacy-skills-only overlap." },
+        { "value": "Religious Education" },
+        { "value": "Geography", "notes": "AU: split-subject form of Humanities and Social Sciences; no dedicated US Common Core standard — see US's 'Literacy in History/Social Studies, Science, and Technical Subjects' for literacy-skills-only overlap." },
+        { "value": "Spanish" },
+        { "value": "French" },
+        { "value": "Computing", "notes": "AU: Digital Technologies; no US Common Core standard." },
+        { "value": "Mathematics", "notes": "AU: Mathematics; US: Mathematics." },
+        { "value": "All", "notes": "Genuinely phase/subject-agnostic content only — don't default to this just because content doesn't fit a familiar named subject; check the full values list first (e.g. the EYFS-specific values below exist precisely so EYFS content doesn't need to fall back to this). Also the correct value for a teacher-assessment framework/methodology document even when its title names one subject's test (e.g. 'Key Stage 2 English Reading Test Framework' is 'All', not 'English'), because the document describes the assessment process, not that subject's content." },
+        { "value": "Personal" },
+        { "value": "Design And Technology", "notes": "AU: Design and Technologies; no US Common Core standard." },
+        { "value": "Social And Emotional Development", "notes": "EYFS." },
+        { "value": "Communication And Language", "notes": "EYFS." },
+        { "value": "Digital Technology" },
+        { "value": "Literacy", "notes": "EYFS." },
+        { "value": "Physical Education", "notes": "AU: Health and Physical Education; no US Common Core standard." },
+        { "value": "Behaviour", "notes": "EYFS." },
+        { "value": "Languages", "notes": "AU: Languages; no US Common Core standard." },
+        { "value": "Music", "notes": "AU: The Arts (Music); no US Common Core standard." },
+        { "value": "Eyfs" },
+        { "value": "Early Years Observations" },
+        { "value": "Computer Science" },
+        { "value": "Art And Design", "notes": "AU: The Arts (Visual Arts); no US Common Core standard." },
+        { "value": "Food And Nutrition" },
+        { "value": "Citizenship", "notes": "AU: Civics and Citizenship; no US Common Core standard." },
+        { "value": "Accounting" },
+        { "value": "Metacognition" },
+        { "value": "Geology" },
+        { "value": "Film Studies" },
+        { "value": "Electronics" },
+        { "value": "Ancient Languages" },
+        { "value": "Economics" },
+        { "value": "Media Studies" },
+        { "value": "Dance" },
+        { "value": "Engineering" },
+        { "value": "Statistics" },
+        { "value": "Classical Civilisation" },
+        { "value": "Business" },
+        { "value": "Sociology" },
+        { "value": "Philosophy" },
+        { "value": "Environmental Science" },
+        { "value": "Music Technology" },
+        { "value": "Physical Development" },
+        { "value": "Drama And Theatre" },
+        { "value": "Astronomy" },
+        { "value": "Self-Regulation And Executive Function" },
+        { "value": "Archaeology" },
+        { "value": "Politics" },
+        { "value": "Law" },
+        { "value": "Art" },
+        { "value": "Bsl", "notes": "British Sign Language." },
+        { "value": "Drama" },
+        { "value": "Psychology" },
+        { "value": "German" },
+        { "value": "Religious Studies" },
+        { "value": "Ancient History" },
+        { "value": "Physics" },
+        { "value": "Biology" }
+      ]
+    }
+  }
+}

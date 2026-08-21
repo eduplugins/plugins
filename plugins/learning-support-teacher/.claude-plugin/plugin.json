@@ -1,0 +1,6 @@
+{
+  "name": "learning-support-teacher",
+  "displayName": "Learning Support Teacher",
+  "description": "Toolkit for learning support, inclusion, and EAL/D specialists — generate and audit differentiation options, adapt task sheets and checks for individual students, and draft report comments and family communications for a support caseload.",
+  "skills": "./skills/"
+}

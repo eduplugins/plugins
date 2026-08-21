@@ -6,9 +6,29 @@
   },
   "plugins": [
     {
-      "name": "example-educator",
-      "source": "./plugins/example-educator",
-      "description": "Example plugin included to demonstrate the EduPlugins repo structure — bundles the example skill and connector. Replace or remove once you've added your own."
+      "name": "classroom-teacher",
+      "source": "./plugins/classroom-teacher",
+      "description": "Full-time generalist teacher toolkit — plan lessons and units, build assessments and rubrics, differentiate for mixed-readiness classes, run inquiry/project units, and draft parent- and report-facing communications in your own voice."
+    },
+    {
+      "name": "relief-teacher",
+      "source": "./plugins/relief-teacher",
+      "description": "Toolkit for casual and relief teachers covering an unfamiliar class — build or adapt a day pack, put together a lesson and student task sheet on short notice, check a plan for support needs, and run a quick end-of-lesson check."
+    },
+    {
+      "name": "learning-support-teacher",
+      "source": "./plugins/learning-support-teacher",
+      "description": "Toolkit for learning support, inclusion, and EAL/D specialists — generate and audit differentiation options, adapt task sheets and checks for individual students, and draft report comments and family communications for a support caseload."
+    },
+    {
+      "name": "curriculum-coordinator",
+      "source": "./plugins/curriculum-coordinator",
+      "description": "Toolkit for curriculum coordinators, heads of department, and instructional designers — map scope and sequence, design inquiry and project units, build assessment schedules and rubrics for cross-marker consistency, catalogue resources for a repository or LMS, and explain curriculum to families."
+    },
+    {
+      "name": "school-leader",
+      "source": "./plugins/school-leader",
+      "description": "Toolkit for principals, deputies, and school administrators — draft whole-school and community communications in a consistent voice, explain curriculum changes to families, and keep an eye on the school's assessment calendar."
     }
   ]
 }

@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "australian-curriculum-v9": {
+      "type": "http",
+      "url": "https://acv9.eduplugins.com/mcp"
+    },
+    "common-core-state-standards": {
+      "type": "http",
+      "url": "https://common-core.eduplugins.com/mcp"
+    },
+    "uk-national-curriculum": {
+      "type": "http",
+      "url": "https://uk-curriculum.eduplugins.com/mcp"
+    }
+  }
+}
