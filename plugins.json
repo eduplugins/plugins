@@ -4,7 +4,7 @@
     "name": "Classroom Teacher",
     "description": "Full-time generalist teacher toolkit — plan lessons and units, build assessments and rubrics, differentiate for mixed-readiness classes, run inquiry/project units, and draft parent- and report-facing communications in your own voice.",
     "skills": [
-      "assessment/exit-ticket",
+      "core/edu-plugin-orchestrator",
       "assessment/feedback-comment-bank",
       "assessment/outline",
       "assessment/rubric-builder",
@@ -35,6 +35,7 @@
     "name": "Relief / Casual Teacher",
     "description": "Toolkit for casual and relief teachers covering an unfamiliar class — build or adapt a day pack, put together a lesson and student task sheet on short notice, check a plan for support needs, and run a quick end-of-lesson check.",
     "skills": [
+      "core/edu-plugin-orchestrator",
       "assessment/exit-ticket",
       "differentiation/reviewer",
       "planning/casual-relief-plan",
@@ -52,6 +53,7 @@
     "name": "Learning Support Teacher",
     "description": "Toolkit for learning support, inclusion, and EAL/D specialists — generate and audit differentiation options, adapt task sheets and checks for individual students, and draft report comments and family communications for a support caseload.",
     "skills": [
+      "core/edu-plugin-orchestrator",
       "assessment/exit-ticket",
       "communication/parent-comms",
       "communication/report-comment",
@@ -70,6 +72,7 @@
     "name": "Curriculum Coordinator",
     "description": "Toolkit for curriculum coordinators, heads of department, and instructional designers — map scope and sequence, design inquiry and project units, build assessment schedules and rubrics for cross-marker consistency, catalogue resources for a repository or LMS, and explain curriculum to families.",
     "skills": [
+      "core/edu-plugin-orchestrator",
       "assessment/feedback-comment-bank",
       "assessment/outline",
       "assessment/rubric-builder",
@@ -94,6 +97,7 @@
     "name": "School Leader",
     "description": "Toolkit for principals, deputies, and school administrators — draft whole-school and community communications in a consistent voice, explain curriculum changes to families, and keep an eye on the school's assessment calendar.",
     "skills": [
+      "core/edu-plugin-orchestrator",
       "assessment/schedule",
       "communication/parent-comms",
       "communication/parent-curriculum-explainer",

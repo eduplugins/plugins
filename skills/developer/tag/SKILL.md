@@ -28,6 +28,15 @@ conceptually right but differently worded is still the wrong tag to a system
 matching against its own controlled vocabulary — the exact string is the
 whole point of consulting one.
 
+## Startup & Context Check
+Before asking the teacher any questions, silently perform this context check:
+1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
+2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
+3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
+
+---
+
+
 ## The abstract tag model
 
 Ten primary keys cover the space, common to every jurisdiction this skill
@@ -221,3 +230,12 @@ cross-curriculum equivalents in the other two jurisdictions, and each
     Category`, `Use Case Theme`, `Use Case`, `School Phase`, `Stage /
     Level`, `Subject`, `Keyword`, `Topics`) and say explicitly that these
     are generalised labels, not a known system's real tag keys.
+
+
+---
+
+## Output format
+
+Deliver the output as a single, clean fenced code block (e.g. ```json or ```yaml) containing only the valid structured data.
+
+- Do not include conversational preambles or markdown outside the code block unless explaining validation errors or ambiguity.

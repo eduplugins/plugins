@@ -42,6 +42,15 @@ different backgrounds, languages, and levels of engagement with school.
 
 ---
 
+## Startup & Context Check
+Before asking the teacher any questions, silently perform this context check:
+1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
+2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
+3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
+
+---
+
+
 ## What this skill needs
 
 - School name, year level, teaching context, and (if already established) a
@@ -251,6 +260,18 @@ Any questions, please [contact method].
 ## Evidence base
 - AITSL, Australian Professional Standards for Teachers 5.5/7.3 — backs reporting to families "clearly, accurately and respectfully" using specifics, not vague summary
   <https://www.aitsl.edu.au/tools-resources/resource/engaging-parents-carers-illustration-of-practice>
+## Output format
+
+Format your response depending on the nature of the request:
+
+- **If generating a single email, letter, or note:** Deliver the complete communication in a dedicated standalone container (e.g., an Artifact, Canvas, or single Markdown code block). This is a document the teacher will save or paste.
+- **If generating a tiered set of communications (e.g., 3 templates for different situations):** Deliver each distinct template in its own standalone Markdown code block so the teacher can copy them individually.
+
+Keep chat text outside the containers brief.
+
+---
+
+
 - AITSL (2024), *Strengthening parent engagement to improve student outcomes* — backs routine, warm communication (not only concern-driven contact) as a lever for student outcomes
   <https://www.aitsl.edu.au/research/spotlights/strengthening-parent-engagement-to-improve-student-outcomes>
 - Education Endowment Foundation (2018), *Working with Parents to Support Children's Learning* — backs plain, jargon-free, personalised communication over generic language, especially in concern letters

@@ -56,6 +56,15 @@ autonomously.
 
 ---
 
+## Startup & Context Check
+Before asking the teacher any questions, silently perform this context check:
+1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
+2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
+3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
+
+---
+
+
 ## What this skill needs
 
 - Curriculum, year level, subject, teaching context, grade bands, and (if
@@ -211,6 +220,17 @@ that needs refining.
 ---
 
 ## Evidence base
+## Output format
+
+Deliver each discrete item (e.g., student comment, feedback phrase, adjustment card) in its own standalone Markdown code block so the teacher can copy them individually with one click.
+
+- Do not wrap the entire set of items in a single giant code block.
+- Do not output a monolithic document unless specifically requested.
+- Keep conversational text outside the code blocks brief (1–2 sentences confirming completion).
+
+---
+
+
 - NSW Department of Education, *Reporting advice — Writing report comments* — backs personalised, individualised comments and warns against uncritical use of comment banks
   <https://education.nsw.gov.au/teaching-and-learning/curriculum/reporting-to-parents/report-comments>
 - Victorian Department of Education, *Reporting Student Achievement and Progress F–10* — backs short (~100 word) comments and shows word-count/format expectations vary by jurisdiction

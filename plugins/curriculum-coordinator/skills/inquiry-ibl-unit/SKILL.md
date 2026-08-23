@@ -68,6 +68,14 @@ is to design for the former.
 
 ---
 
+## Startup & Context Check
+Before asking the teacher any questions, silently perform this context check:
+1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
+2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
+3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
+
+---
+
 ## What this skill needs
 
 - Curriculum, year level, teaching context, and (if relevant) a pedagogy
@@ -358,6 +366,16 @@ Only apply a framework lens if the teacher says yes.
 > question].' What would you like to develop next? I can build a rubric,
 > create student-facing task sheets for any phase, or develop any phase
 > in more detail."
+
+---
+
+## Output format
+
+Once finalised, deliver the complete document in a dedicated standalone container (e.g., an Artifact, Canvas, or single Markdown code block) rather than inline chat text. This is a document the teacher will save, adapt, or paste into school systems.
+
+- If the teacher requests a specific file format (e.g. .docx, .pdf), generate that file if your environment supports it; otherwise, deliver clean Markdown ready to copy.
+- Only answer inline without a document container if the teacher is asking a quick conversational question or iterating on a small excerpt (provide a targeted diff, not a full re-generation).
+- Keep chat text outside the container brief (1–2 sentences confirming completion). Do not duplicate the document contents in the chat message.
 
 ---
 

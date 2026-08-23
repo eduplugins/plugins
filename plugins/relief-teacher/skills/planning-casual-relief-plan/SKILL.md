@@ -63,6 +63,14 @@ permanent staff — not a style preference.
 
 ---
 
+## Startup & Context Check
+Before asking the teacher any questions, silently perform this context check:
+1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
+2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
+3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
+
+---
+
 ## What this skill needs
 
 School name, year level, teaching context, and any class or student context.
@@ -282,6 +290,16 @@ or "Return keys to front office at end of day."]
   pedagogical language.
 - Include: specific page numbers, exact instructions, clear timings, room
   numbers, names.
+
+---
+
+## Output format
+
+Once finalised, deliver the complete document in a dedicated standalone container (e.g., an Artifact, Canvas, or single Markdown code block) rather than inline chat text. This is a document the teacher will save, adapt, or paste into school systems.
+
+- If the teacher requests a specific file format (e.g. .docx, .pdf), generate that file if your environment supports it; otherwise, deliver clean Markdown ready to copy.
+- Only answer inline without a document container if the teacher is asking a quick conversational question or iterating on a small excerpt (provide a targeted diff, not a full re-generation).
+- Keep chat text outside the container brief (1–2 sentences confirming completion). Do not duplicate the document contents in the chat message.
 
 ---
 
