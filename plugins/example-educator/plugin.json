@@ -1,8 +1,0 @@
-{
-  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
-  "name": "example-educator",
-  "description": "Example plugin included to demonstrate the EduPlugins repo structure — bundles the example skill and connector. Replace or remove once you've added your own.",
-  "license": "MIT",
-  "homepage": "https://github.com/eduplugins/plugins",
-  "repository": "https://github.com/eduplugins/plugins"
-}

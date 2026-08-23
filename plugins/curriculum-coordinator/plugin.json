@@ -1,0 +1,8 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "curriculum-coordinator",
+  "description": "Toolkit for curriculum coordinators, heads of department, and instructional designers — map scope and sequence, design inquiry and project units, build assessment schedules and rubrics for cross-marker consistency, catalogue resources for a repository or LMS, and explain curriculum to families.",
+  "license": "MIT",
+  "homepage": "https://github.com/eduplugins/plugins",
+  "repository": "https://github.com/eduplugins/plugins"
+}

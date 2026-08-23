@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "australian-curriculum-v9": {
-      "type": "http",
-      "url": "https://acv9.eduplugins.com/mcp"
-    }
-  }
-}
