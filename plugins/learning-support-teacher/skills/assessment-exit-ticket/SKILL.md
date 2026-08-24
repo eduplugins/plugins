@@ -47,15 +47,6 @@ classroom-assessment research — see Evidence base below.
 
 ---
 
-## Startup & Context Check
-Before asking the teacher any questions, silently perform this context check:
-1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
-2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
-3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
-
----
-
-
 ## What this skill needs
 
 - Curriculum, year level, teaching context, and (if relevant) a pedagogy
@@ -219,7 +210,6 @@ Deliver each discrete item (e.g., student comment, feedback phrase, adjustment c
 - Keep conversational text outside the code blocks brief (1–2 sentences confirming completion).
 
 ---
-
 
   research; later meta-analyses find smaller, more variable effects, so
   treat this as directional support rather than a precise figure.

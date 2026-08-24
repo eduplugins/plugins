@@ -110,7 +110,7 @@ versus a disclosed file, _Pruning_ for what to cut, _Leading words_ for what to
 collapse. Work through it before writing prose, and again before calling the
 body done.
 
-Two repo-specific constraints sit on top of it:
+Three repo-specific constraints sit on top of it:
 
 **Name the source, never the content.** Where a skill needs curriculum content,
 achievement descriptors, or standards, it states what it needs and instructs the
@@ -123,6 +123,15 @@ every descriptor it writes in what was fetched.
 **Leave the judgement with the teacher.** Achievement levels, grades, and
 diagnostic calls come from the teacher; the skill drafts around them. Output is a
 draft for review.
+
+**Work standalone.** A skill never assumes an orchestrator, a loaded profile
+skill, or saved session memory exists — it is invoked on its own as often as
+inside a bundle. Don't open the body with a "Startup & Context Check" (or
+anything shaped like one) that probes for orchestrator state or profile skills
+before proceeding; ask the teacher directly for whatever context the body
+needs, same as any other input. If a broader setup skill happens to be active,
+its context arrives through the conversation the skill can already read, not
+through a check the skill has to perform.
 
 **Done when:** every external input the skill depends on has a stated source and
 a stated fallback, and each step in the body ends on a **completion criterion**

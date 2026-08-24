@@ -62,14 +62,6 @@ genuinely need to read from the slide.
 
 ---
 
-## Startup & Context Check
-Before asking the teacher any questions, silently perform this context check:
-1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
-2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
-3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
-
----
-
 ## What this skill needs
 
 - Curriculum and year level. If already known from earlier in this

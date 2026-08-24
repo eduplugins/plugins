@@ -31,6 +31,7 @@ history.
 | [Parent Curriculum Explainer](communication-parent-curriculum-explainer.md) | Communication | ACARA, *Parent/carer information* (V9 Australian Curriculum) |
 | [Report Comment Writer](communication-report-comment.md) | Communication | NSW DoE, *Reporting advice — Writing report comments* |
 | [Voice & Style Capture](communication-voice-style-capture.md) | Communication | Goodall & Montgomery (2014), parental engagement continuum |
+| [Voice Check](core-voice-check.md) | Core | AITSL, APST Standard 5.5 |
 | [Tag](developer-tag.md) | Developer | Education Services Australia, *Australian Education Vocabularies* |
 | [Differentiation Reviewer](differentiation-reviewer.md) | Differentiation | AITSL, APST Standard 1.5 / *In the Classroom: Differentiation* |
 | [Differentiation Suggester](differentiation-suggester.md) | Differentiation | AITSL, APST Standard 1.5 / *In the Classroom: Differentiation* |
