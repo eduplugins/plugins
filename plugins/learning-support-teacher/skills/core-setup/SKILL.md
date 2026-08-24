@@ -1,6 +1,6 @@
 ---
-name: edu-plugin-orchestrator
-version: 1.2.0
+name: setup
+version: 1.2.1
 changelog: https://skills.easedup.com/changelog
 description: >
   The master orchestrator, workflow coordinator, and memory/profile manager for the

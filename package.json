@@ -4,15 +4,12 @@
   "type": "module",
   "scripts": {
     "plugins:build": "node scripts/build-plugins.mjs",
-    "plugins:check": "node scripts/build-plugins.mjs --check",
-    "eval": "tsx"
+    "plugins:check": "node scripts/build-plugins.mjs --check"
   },
   "dependencies": {
-    "@eval": "workspace:*",
     "yaml": "^2.9.0"
   },
   "devDependencies": {
-    "tsx": "^4.19.2",
     "@types/node": "^22.10.0"
   },
   "packageManager": "pnpm@11.22.0+sha512.1ff870c4c6133dfd88fb2afc46dd13d47f09c9794b438c6fdb47ca98caf3bc16381ee0be93a091b8e3824cf01f889f46d7d9e20910fb0be1ab0fb5baa80dd621"

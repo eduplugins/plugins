@@ -23,27 +23,31 @@ To support **single-skill standalone downloads** (where a teacher downloads just
 This decentralized design offers distinct advantages:
 
 1. **Zero-Dependency Standalone Downloads:** A teacher can use any individual skill on any AI host without needing the full plugin repository or an orchestrator system prompt.
-2. **Eliminates Orchestrator Rule Bloat:** Centralizing output rules in the orchestrator (`skills/core/edu-plugin-orchestrator/SKILL.md`) would require the orchestrator prompt to house detailed instructions for all 4 output archetypes, increasing prompt size and risking **instruction dilution** (where the orchestrator confuses which formatting rule applies to which skill).
+2. **Eliminates Orchestrator Rule Bloat:** Centralizing output rules in the orchestrator (`skills/core/setup/SKILL.md`) would require the orchestrator prompt to house detailed instructions for all 4 output archetypes, increasing prompt size and risking **instruction dilution** (where the orchestrator confuses which formatting rule applies to which skill).
 3. **Negligible Token Overhead:** Adding an `## Output format` section to a skill adds only **~40–60 tokens** (around 35–50 words). In modern LLM context windows (128k–200k+ tokens), this overhead is mathematically negligible while guaranteeing 100% consistent UX.
-4. **Seamless Orchestrator Compatibility:** When running inside the full EduPlugins ecosystem, the master orchestrator (`edu-plugin-orchestrator`) focuses on routing, curriculum alignment, and context handoff, while the downstream skills naturally handle their own output presentation.
+4. **Seamless Orchestrator Compatibility:** When running inside the full EduPlugins ecosystem, the master orchestrator (`setup`) focuses on routing, curriculum alignment, and context handoff, while the downstream skills naturally handle their own output presentation.
 
 ---
 
-## 3. The Ecosystem-Aware Handshake (Memory & Orchestrator Check)
+## 3. No Orchestrator Handshake — Skills Work Standalone
 
-To ensure smooth operation whether a skill is run standalone or as part of the full EduPlugins ecosystem, every skill follows the **Ecosystem-Aware Startup Handshake**:
+A skill never assumes an orchestrator, a loaded profile skill, or saved session
+memory exists — it is invoked on its own as often as inside a bundle. Do **not**
+open a skill's body with a "Startup & Context Check" (or anything shaped like
+one) that probes for orchestrator state or profile skills before proceeding.
 
-```markdown
-## Startup & Context Check
-Before asking the teacher any questions, silently perform this context check:
-1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
-2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
-3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
-```
+Instead, a skill asks the teacher directly for whatever context its body needs
+— curriculum, year level, topic — the same way it asks for anything else, and
+reuses context already established earlier in the conversation rather than
+re-asking. If a broader setup skill happens to be active, its context arrives
+through the conversation the skill can already read, not through a check the
+skill has to perform.
 
 This ensures:
-- **In Plugin Mode:** The teacher configures their profile once; all skills automatically inherit it.
-- **In Standalone Mode:** The skill gracefully falls back to direct questioning without hallucinating or breaking.
+- **In Plugin Mode:** Context surfaced earlier in the conversation (e.g. by
+  `setup`) is reused rather than re-asked for.
+- **In Standalone Mode:** The skill asks the teacher directly, without
+  hallucinating or breaking.
 
 ---
 

@@ -47,15 +47,6 @@ don't overclaim an evidence base to teachers beyond that.
 
 ---
 
-## Startup & Context Check
-Before asking the teacher any questions, silently perform this context check:
-1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
-2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
-3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
-
----
-
-
 ## What this skill needs
 
 School name and teaching context. If already known from earlier in this
@@ -227,7 +218,6 @@ Format your response differently across the two phases of this skill:
 - **When delivering the final voice profile (Phase 2):** Deliver the `voice-profile.md` content in a dedicated standalone container (e.g., an Artifact, Canvas, or single Markdown code block) so the teacher can easily save it as a standalone document. 
 
 ---
-
 
 - AITSL, Australian Professional Standards for Teachers 7.3 — backs framing voice capture as supporting an ongoing, personally-invested family relationship, not a one-off template
   <https://www.aitsl.edu.au/tools-resources/resource/engaging-parents-carers-illustration-of-practice>

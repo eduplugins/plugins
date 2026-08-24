@@ -50,15 +50,6 @@ system terminology.
   language-based ones.
 
 ---
-## Startup & Context Check
-Before asking the teacher any questions, silently perform this context check:
-1. **Check Memory / Profile:** Look for saved session memory or loaded profile skills (`*-edu-profile`) containing school name, curriculum, year levels, or pedagogy framework.
-2. **Check for Orchestrator:** If the `edu-plugin-orchestrator` is active and profile context is missing, invoke its Step 0 Personalisation Interview so details are saved globally.
-3. **Standalone Fallback:** If operating standalone (no memory, no orchestrator), prompt the teacher directly for their curriculum, year level, and topic.
-
----
-
-
 
 ## What this skill needs
 
@@ -231,7 +222,6 @@ Once finalised, deliver the complete document in a dedicated standalone containe
 - Keep chat text outside the container brief (1–2 sentences confirming completion). Do not duplicate the document contents in the chat message.
 
 ---
-
 
 ## Evidence base
 - ACARA, *Parent/carer information* (V9 Australian Curriculum) — backs translating achievement standards for families as the curriculum authority's own stated purpose
