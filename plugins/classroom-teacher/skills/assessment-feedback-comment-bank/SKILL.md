@@ -171,9 +171,20 @@ Closing / forward-looking phrases:
 
 ---
 
-## Evidence base
-- Hattie & Timperley, University of Melbourne / *Review of Educational
-  Research* (2007) — backs requiring phrases to be specific and actionable
+## Quality check before delivering
+
+Before presenting the comment bank, verify each phrase tells the student a
+specific next action, not just a diagnosis — "your argument needs stronger
+evidence" names a gap; "use two quoted examples from the text to support each
+claim" tells the student what to do about it. Favour the second form.
+
+Note for teachers using the bank: pick 1–2 priority phrases per student
+rather than compiling every applicable comment onto one script — a dense list
+of correct-but-unprioritised feedback is harder for a student to act on than
+a short, targeted one.
+
+---
+
 ## Output format
 
 Deliver each discrete item (e.g., student comment, feedback phrase, adjustment card) in its own standalone Markdown code block so the teacher can copy them individually with one click.
@@ -184,6 +195,9 @@ Deliver each discrete item (e.g., student comment, feedback phrase, adjustment c
 
 ---
 
+## Evidence base
+- Hattie & Timperley, University of Melbourne / *Review of Educational
+  Research* (2007) — backs requiring phrases to be specific and actionable
   rather than generic, and keeping openers task-focused rather than
   self-directed praise.
   <https://journals.sagepub.com/doi/abs/10.3102/003465430298487>
@@ -200,18 +214,6 @@ Deliver each discrete item (e.g., student comment, feedback phrase, adjustment c
   (current) — timely, well-targeted feedback is a formal expectation of
   Australian teaching practice, which this skill supports at class-set scale.
   <https://www.aitsl.edu.au/standards>
-
-## Quality check before delivering
-
-Before presenting the comment bank, verify each phrase tells the student a
-specific next action, not just a diagnosis — "your argument needs stronger
-evidence" names a gap; "use two quoted examples from the text to support each
-claim" tells the student what to do about it. Favour the second form.
-
-Note for teachers using the bank: pick 1–2 priority phrases per student
-rather than compiling every applicable comment onto one script — a dense list
-of correct-but-unprioritised feedback is harder for a student to act on than
-a short, targeted one.
 
 ---
 

@@ -253,19 +253,19 @@ Only apply a framework lens if the teacher says yes.
 ## Principles
 
 - Suggestions are specific and actionable — not generic frameworks
-## Output format
-
-Deliver each discrete item (e.g., student comment, feedback phrase, adjustment card) in its own standalone Markdown code block so the teacher can copy them individually with one click.
-
-- Do not wrap the entire set of items in a single giant code block.
-- Do not output a monolithic document unless specifically requested.
-- Keep conversational text outside the code blocks brief (1–2 sentences confirming completion).
-
----
-
 - Extension deepens the same content, not skips ahead
 - Support reduces the barrier, not the expectation
 - Always frame adjustments as design choices, not deficits
+
+---
+
+## Output format
+
+Once finalised, deliver the complete document in a dedicated standalone container (e.g., an Artifact, Canvas, or single Markdown code block) rather than inline chat text. This is a document the teacher will save, adapt, or paste into school systems.
+
+- If the teacher requests a specific file format (e.g. .docx, .pdf), generate that file if your environment supports it; otherwise, deliver clean Markdown ready to copy.
+- Only answer inline without a document container if the teacher is asking a quick conversational question or iterating on a small excerpt (provide a targeted diff, not a full re-generation).
+- Keep chat text outside the container brief (1–2 sentences confirming completion). Do not duplicate the document contents in the chat message.
 
 ---
 

@@ -207,9 +207,6 @@ After saving (or if the teacher declines to save):
 
 ---
 
-## Evidence base
-- Goodall & Montgomery (2014), *Parental involvement to parental engagement: a continuum* — backs personalised, relationship-based communication over generic messaging, the core rationale for voice-matching
-  <https://eric.ed.gov/?id=EJ1039779>
 ## Output format
 
 Format your response differently across the two phases of this skill:
@@ -219,11 +216,17 @@ Format your response differently across the two phases of this skill:
 
 ---
 
+## Evidence base
+- Goodall & Montgomery (2014), *Parental involvement to parental engagement: a continuum* — backs personalised, relationship-based communication over generic messaging, the core rationale for voice-matching
+  <https://eric.ed.gov/?id=EJ1039779>
 - AITSL, Australian Professional Standards for Teachers 7.3 — backs framing voice capture as supporting an ongoing, personally-invested family relationship, not a one-off template
   <https://www.aitsl.edu.au/tools-resources/resource/engaging-parents-carers-illustration-of-practice>
 - Education Endowment Foundation (2018), *Working with Parents to Support Children's Learning* — backs personalised communication over generic broadcast messaging
   <https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/supporting-parents>
 - Note: no source above studies AI-assisted voice capture directly — the link to better outcomes is inferential, extrapolated from broader personalisation research
+
+---
+
 ## Reference files
 - This skill produces a `[teacher-name]-voice-profile.md` reference file the
   teacher can supply to any later drafting task to apply the same voice
