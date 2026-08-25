@@ -248,9 +248,6 @@ Any questions, please [contact method].
 
 ---
 
-## Evidence base
-- AITSL, Australian Professional Standards for Teachers 5.5/7.3 — backs reporting to families "clearly, accurately and respectfully" using specifics, not vague summary
-  <https://www.aitsl.edu.au/tools-resources/resource/engaging-parents-carers-illustration-of-practice>
 ## Output format
 
 Format your response depending on the nature of the request:
@@ -262,12 +259,18 @@ Keep chat text outside the containers brief.
 
 ---
 
+## Evidence base
+- AITSL, Australian Professional Standards for Teachers 5.5/7.3 — backs reporting to families "clearly, accurately and respectfully" using specifics, not vague summary
+  <https://www.aitsl.edu.au/tools-resources/resource/engaging-parents-carers-illustration-of-practice>
 - AITSL (2024), *Strengthening parent engagement to improve student outcomes* — backs routine, warm communication (not only concern-driven contact) as a lever for student outcomes
   <https://www.aitsl.edu.au/research/spotlights/strengthening-parent-engagement-to-improve-student-outcomes>
 - Education Endowment Foundation (2018), *Working with Parents to Support Children's Learning* — backs plain, jargon-free, personalised communication over generic language, especially in concern letters
   <https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/supporting-parents>
 - NSW Department of Education, *Strengthening family and community engagement in student learning* — backs concrete CALD-inclusive strategies (translated summaries, interpreters, varied channels)
   <https://education.nsw.gov.au/content/dam/main-education/en/home/teaching-and-learning/curriculum/multicultural-education/culture-and-diversity/engaging-communities/Strengthening_family_and_community_engagement_in_student_learning_resource.pdf>
+
+---
+
 ## Reference files
 - A `[teacher-name]-voice-profile.md` reference file, if supplied — teacher
   voice for written outputs

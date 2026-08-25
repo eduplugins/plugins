@@ -198,9 +198,6 @@ Label it clearly:
 
 ---
 
-## Evidence base
-- Black & Wiliam, King's College London (1998) — quick, targeted formative
-  checks are linked to large average effect sizes in classroom-assessment
 ## Output format
 
 Deliver each discrete item (e.g., student comment, feedback phrase, adjustment card) in its own standalone Markdown code block so the teacher can copy them individually with one click.
@@ -211,6 +208,9 @@ Deliver each discrete item (e.g., student comment, feedback phrase, adjustment c
 
 ---
 
+## Evidence base
+- Black & Wiliam, King's College London (1998) — quick, targeted formative
+  checks are linked to large average effect sizes in classroom-assessment
   research; later meta-analyses find smaller, more variable effects, so
   treat this as directional support rather than a precise figure.
   <http://allianceforlearning.co.uk/wp-content/uploads/2017/03/William-and-Black-Inside-the-Black-Box.pdf>
@@ -224,6 +224,7 @@ Deliver each discrete item (e.g., student comment, feedback phrase, adjustment c
 - AITSL, *Formative assessment in the classroom* (current) — backs using
   responses to decide the next teaching move, not just to grade.
   <https://www.aitsl.edu.au/tools-resources/resource/formative-assessment-in-the-classroom-illustration-of-practice>
+
 ---
 
 ## Step 5: Offer next step

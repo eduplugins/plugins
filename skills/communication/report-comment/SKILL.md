@@ -210,7 +210,6 @@ that needs refining.
 
 ---
 
-## Evidence base
 ## Output format
 
 Deliver each discrete item (e.g., student comment, feedback phrase, adjustment card) in its own standalone Markdown code block so the teacher can copy them individually with one click.
@@ -221,6 +220,7 @@ Deliver each discrete item (e.g., student comment, feedback phrase, adjustment c
 
 ---
 
+## Evidence base
 - NSW Department of Education, *Reporting advice — Writing report comments* — backs personalised, individualised comments and warns against uncritical use of comment banks
   <https://education.nsw.gov.au/teaching-and-learning/curriculum/reporting-to-parents/report-comments>
 - Victorian Department of Education, *Reporting Student Achievement and Progress F–10* — backs short (~100 word) comments and shows word-count/format expectations vary by jurisdiction
@@ -229,6 +229,7 @@ Deliver each discrete item (e.g., student comment, feedback phrase, adjustment c
   <https://www.aitsl.edu.au/standards>
 - ACARA, *Planning, teaching, assessing and reporting* — backs achievement standards as the designated common reference point for report language
   <https://www.australiancurriculum.edu.au/help/f-10-curriculum-overview/planning--teaching--assessing-and-reporting>
+
 ---
 
 ## Reference files
