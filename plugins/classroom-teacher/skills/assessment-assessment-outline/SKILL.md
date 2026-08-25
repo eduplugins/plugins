@@ -1,5 +1,5 @@
 ---
-name: outline
+name: assessment-outline
 version: 1.1.0
 released: 2026-08-16
 description: >
