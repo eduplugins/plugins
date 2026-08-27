@@ -48,7 +48,8 @@ An array of installable plugin bundles.
 |---|---|---|
 | `slug` | yes | Unique identifier; also the plugin's directory name under `plugins/` and its marketplace entry name |
 | `name` | yes | Display name |
-| `description` | yes | One-line summary shown in the catalog and marketplace |
+| `tagline` | yes | Short subtitle (≤80 chars) — used as Codex's `interface.shortDescription`, the plugin card's subtitle |
+| `description` | yes | One-line summary shown in the catalog and marketplace; also Codex's `interface.longDescription` |
 | `skills` | yes (can be empty) | Array of skill slugs (`<category>/<name>`) this plugin bundles |
 | `connectors` | yes (can be empty) | Array of connector slugs this plugin bundles |
 
@@ -56,12 +57,18 @@ Every `skills`/`connectors` slug must resolve to an entry in `skills/` / `connec
 
 ## Generated output
 
-For each plugin, `pnpm run plugins:build` writes `plugins/<slug>/` twice over — once in Claude's format, once in the vendor-neutral [agent-plugins.org](https://agent-plugins.org/) format ([spec 1.0.0](https://github.com/agentplugins/agent-plugins-spec)) — both sharing the same `skills/` folder:
+For each plugin, `pnpm run plugins:build` writes `plugins/<slug>/` three times over — once in Claude's format, once in the vendor-neutral [agent-plugins.org](https://agent-plugins.org/) format ([spec 1.0.0](https://github.com/agentplugins/agent-plugins-spec)), once in ChatGPT/Codex's format — all sharing the same `skills/` folder:
 
-- `skills/<category>-<name>/` — a copy of each bundled skill's folder (shared by both formats)
+- `skills/<category>-<name>/` — a copy of each bundled skill's folder (shared by all three formats)
 - `.claude-plugin/plugin.json` — Claude's plugin manifest (`name`, `displayName`, `description`, `skills` path)
 - `.mcp.json` — Claude's MCP config; present only if the plugin bundles at least one `mcp-http` / `mcp-sse` / `mcp-stdio` connector; maps each to an `mcpServers` entry (`{ type, url }` for http/sse, `{ type, command, args?, env? }` for stdio)
 - `plugin.json` — agent-plugins.org manifest (`$schema`, `name`, `description`, `license`, `homepage`, `repository`), validated against [`plugin.schema.json`](https://agent-plugins.org/schemas/1.0.0/plugin.schema.json); the build fails if `plugin.slug` isn't a valid agent-plugins.org `name`
 - `mcp.json` — agent-plugins.org MCP config; same connectors as `.mcp.json` above but with spec type names (`streamable-http` instead of `http`), present under the same condition
+- `.codex-plugin/plugin.json` — ChatGPT/Codex's plugin manifest (`name`, `version`, `description`, `author`, `homepage`, `repository`, `license`, `skills` path, and an `interface` block — `displayName`, `shortDescription` from `tagline`, `longDescription` from `description`, `developerName`, `category`, `capabilities`); `mcpServers` points at the `.mcp.json` above (same `{ type: "http", ... }` shape Codex expects) when it exists. `version` is a fixed `1.0.0` for every plugin — bump by hand in `scripts/build-plugins.mjs` if a plugin needs real versioning.
 
-It also writes `.claude-plugin/marketplace.json` at the repo root, listing every plugin as a Claude marketplace entry. agent-plugins.org has no marketplace-level manifest in v1.0.0 — clients following that spec load a plugin directly from its `plugins/<slug>/` folder.
+It also writes two repo-root marketplace/catalog files, one per client that needs one:
+
+- `.claude-plugin/marketplace.json` — Claude marketplace entries (`name`, `source`, `description`)
+- `.agents/plugins/marketplace.json` — the Codex/ChatGPT plugin catalog (`name`, `interface.displayName`, and `plugins[]` entries with `source: { source: "local", path }`, `policy.installation`/`policy.authentication`, `category`)
+
+agent-plugins.org has no marketplace-level manifest in v1.0.0 — clients following that spec load a plugin directly from its `plugins/<slug>/` folder.

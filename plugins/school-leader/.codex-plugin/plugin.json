@@ -1,0 +1,26 @@
+{
+  "name": "school-leader",
+  "version": "1.0.0",
+  "description": "Toolkit for principals, deputies, and school administrators — draft whole-school and community communications in a consistent voice, explain curriculum changes to families, and keep an eye on the school's assessment calendar.",
+  "author": {
+    "name": "EduPlugins",
+    "url": "https://github.com/eduplugins"
+  },
+  "homepage": "https://github.com/eduplugins/plugins",
+  "repository": "https://github.com/eduplugins/plugins",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "School Leader",
+    "shortDescription": "Whole-school comms and curriculum updates in a consistent voice",
+    "longDescription": "Toolkit for principals, deputies, and school administrators — draft whole-school and community communications in a consistent voice, explain curriculum changes to families, and keep an eye on the school's assessment calendar.",
+    "developerName": "EduPlugins",
+    "category": "Education",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ]
+  }
+}

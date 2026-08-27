@@ -7,7 +7,7 @@ under the [EduPlugins](https://github.com/eduplugins) org (`site`, `plugins`,
 
 Layout:
 
-- `.claude-plugin/marketplace.json`, `plugins/` — **generated**. Don't hand-edit; regenerate with `pnpm run plugins:build` after changing the sources below. Each `plugins/<slug>/` is written in two parallel formats sharing one `skills/` folder: `.claude-plugin/` + `.mcp.json` for Claude, and root-level `plugin.json` + `mcp.json` for the vendor-neutral [agent-plugins.org](https://agent-plugins.org/) spec.
+- `.claude-plugin/marketplace.json`, `.agents/plugins/marketplace.json`, `plugins/` — **generated**. Don't hand-edit; regenerate with `pnpm run plugins:build` after changing the sources below. Each `plugins/<slug>/` is written in three parallel formats sharing one `skills/` folder: `.claude-plugin/` + `.mcp.json` for Claude, root-level `plugin.json` + `mcp.json` for the vendor-neutral [agent-plugins.org](https://agent-plugins.org/) spec, and `.codex-plugin/plugin.json` for ChatGPT/Codex (catalogued at the repo-root `.agents/plugins/marketplace.json`).
 - `skills/<slug>/SKILL.md` — hand-authored, one folder per skill, the single source of truth for skill content. Every skill is expected to be evidence-backed (see `docs/evidence/`).
 - `connectors.json`, `plugins.json` — hand-authored data files. See [docs/data-model.md](docs/data-model.md) for the schema.
 - `scripts/build-plugins.mjs` — the generator; also supports `--check` (used by `pnpm run plugins:check`) to detect drift.

@@ -1,0 +1,26 @@
+{
+  "name": "learning-support-teacher",
+  "version": "1.0.0",
+  "description": "Toolkit for learning support, inclusion, and EAL/D specialists — generate and audit differentiation options, adapt task sheets and checks for individual students, and draft report comments and family communications for a support caseload.",
+  "author": {
+    "name": "EduPlugins",
+    "url": "https://github.com/eduplugins"
+  },
+  "homepage": "https://github.com/eduplugins/plugins",
+  "repository": "https://github.com/eduplugins/plugins",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Learning Support Teacher",
+    "shortDescription": "Differentiation, adapted tasks, and comms for a support caseload",
+    "longDescription": "Toolkit for learning support, inclusion, and EAL/D specialists — generate and audit differentiation options, adapt task sheets and checks for individual students, and draft report comments and family communications for a support caseload.",
+    "developerName": "EduPlugins",
+    "category": "Education",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ]
+  }
+}

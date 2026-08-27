@@ -1,0 +1,26 @@
+{
+  "name": "classroom-teacher",
+  "version": "1.0.0",
+  "description": "Full-time generalist teacher toolkit — plan lessons and units, build assessments and rubrics, differentiate for mixed-readiness classes, run inquiry/project units, and draft parent- and report-facing communications in your own voice.",
+  "author": {
+    "name": "EduPlugins",
+    "url": "https://github.com/eduplugins"
+  },
+  "homepage": "https://github.com/eduplugins/plugins",
+  "repository": "https://github.com/eduplugins/plugins",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Classroom Teacher",
+    "shortDescription": "Lesson plans, rubrics, and parent comms in your voice",
+    "longDescription": "Full-time generalist teacher toolkit — plan lessons and units, build assessments and rubrics, differentiate for mixed-readiness classes, run inquiry/project units, and draft parent- and report-facing communications in your own voice.",
+    "developerName": "EduPlugins",
+    "category": "Education",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ]
+  }
+}

@@ -4,10 +4,15 @@
 // See docs/data-model.md for the schema. Run via `pnpm run plugins:build`
 // (or `--check` via `pnpm run plugins:check` to verify nothing has drifted).
 //
-// Each plugin is written twice over, sharing one skills/ folder:
+// Each plugin is written three times over, sharing one skills/ folder:
 //   - .claude-plugin/plugin.json + .mcp.json   — Claude's plugin format
 //   - plugin.json + mcp.json (root)            — agent-plugins.org spec 1.0.0
 //     https://github.com/agentplugins/agent-plugins-spec
+//   - .codex-plugin/plugin.json                — ChatGPT/Codex's plugin format
+//     https://developers.openai.com/plugins/build/plugins
+// It also writes .agents/plugins/marketplace.json at the repo root, the
+// catalog ChatGPT/Codex reads to list every plugin (the Codex counterpart
+// of .claude-plugin/marketplace.json).
 
 import { existsSync, mkdirSync, rmSync, readFileSync, writeFileSync, readdirSync, statSync, cpSync } from "node:fs";
 import { join, relative, dirname } from "node:path";
@@ -21,8 +26,11 @@ const CHECK = process.argv.includes("--check");
 const MCP_TYPE_MAP = { "mcp-http": "http", "mcp-sse": "sse", "mcp-stdio": "stdio" };
 // connectors.json `type` -> agent-plugins.org mcp.json server `type` (schemas/1.0.0/mcp.schema.json).
 const AGENT_PLUGINS_MCP_TYPE_MAP = { "mcp-http": "streamable-http", "mcp-sse": "sse", "mcp-stdio": "stdio" };
-// agent-plugins.org plugin.schema.json `name` pattern.
+// agent-plugins.org plugin.schema.json `name` pattern (also satisfies Codex's
+// "kebab-case, no spaces" `name` rule).
 const AGENT_PLUGINS_NAME_RE = /^(?!.*(?:--|\.\.))[a-z0-9](?:[a-z0-9.-]*[a-z0-9])?$/;
+// Codex's plugin.json `version` requires strict semver; bump by hand if a plugin needs one.
+const CODEX_PLUGIN_VERSION = "1.0.0";
 
 function parseFrontmatter(content) {
   const match = content.match(/^---\n([\s\S]*?)\n---/);
@@ -85,6 +93,11 @@ for (const plugin of plugins) {
   if (plugin.slug.length > 64 || !AGENT_PLUGINS_NAME_RE.test(plugin.slug)) {
     errors.push(`plugin "${plugin.slug}" is not a valid agent-plugins.org name (lowercase alphanumeric, ".", "-", max 64 chars, no leading/trailing or doubled separators)`);
   }
+  if (!plugin.tagline) {
+    errors.push(`plugin "${plugin.slug}" is missing "tagline" (short subtitle for Codex's plugin card)`);
+  } else if (plugin.tagline.length > 80) {
+    errors.push(`plugin "${plugin.slug}" has a "tagline" over 80 chars (${plugin.tagline.length}) — keep it a short subtitle`);
+  }
 }
 if (errors.length > 0) {
   console.error("build-plugins: validation failed:\n" + errors.map((e) => `  - ${e}`).join("\n"));
@@ -97,6 +110,7 @@ function generate(outRoot) {
   mkdirSync(pluginsOut, { recursive: true });
 
   const marketplaceEntries = [];
+  const codexMarketplaceEntries = [];
 
   for (const plugin of plugins) {
     const pluginDir = join(pluginsOut, plugin.slug);
@@ -180,7 +194,44 @@ function generate(outRoot) {
       );
     }
 
+    // Codex/ChatGPT plugin format: .codex-plugin/plugin.json, sharing the same
+    // skills/ folder and reusing the Claude .mcp.json above (same server config
+    // shape — Codex's own examples use { type: "http", url }).
+    mkdirSync(join(pluginDir, ".codex-plugin"), { recursive: true });
+    writeFileSync(
+      join(pluginDir, ".codex-plugin", "plugin.json"),
+      JSON.stringify(
+        {
+          name: plugin.slug,
+          version: CODEX_PLUGIN_VERSION,
+          description: plugin.description,
+          author: { name: "EduPlugins", url: "https://github.com/eduplugins" },
+          homepage: "https://github.com/eduplugins/plugins",
+          repository: "https://github.com/eduplugins/plugins",
+          license: "MIT",
+          skills: "./skills/",
+          ...(Object.keys(mcpServers).length > 0 ? { mcpServers: "./.mcp.json" } : {}),
+          interface: {
+            displayName: plugin.name,
+            shortDescription: plugin.tagline,
+            longDescription: plugin.description,
+            developerName: "EduPlugins",
+            category: "Education",
+            capabilities: ["Interactive", "Read", "Write"],
+          },
+        },
+        null,
+        2,
+      ) + "\n",
+    );
+
     marketplaceEntries.push({ name: plugin.slug, source: `./plugins/${plugin.slug}`, description: plugin.description });
+    codexMarketplaceEntries.push({
+      name: plugin.slug,
+      source: { source: "local", path: `./plugins/${plugin.slug}` },
+      policy: { installation: "AVAILABLE", authentication: "ON_INSTALL" },
+      category: "Education",
+    });
   }
 
   mkdirSync(join(outRoot, ".claude-plugin"), { recursive: true });
@@ -188,6 +239,16 @@ function generate(outRoot) {
     join(outRoot, ".claude-plugin", "marketplace.json"),
     JSON.stringify(
       { name: "eduplugins", owner: { name: "EduPlugins", url: "https://github.com/eduplugins/plugins" }, plugins: marketplaceEntries },
+      null,
+      2,
+    ) + "\n",
+  );
+
+  mkdirSync(join(outRoot, ".agents", "plugins"), { recursive: true });
+  writeFileSync(
+    join(outRoot, ".agents", "plugins", "marketplace.json"),
+    JSON.stringify(
+      { name: "eduplugins", interface: { displayName: "EduPlugins" }, plugins: codexMarketplaceEntries },
       null,
       2,
     ) + "\n",
@@ -213,10 +274,15 @@ if (CHECK) {
   generate(tmp);
 
   const prefixed = (dir, base) => new Map([...readTree(dir)].map(([p, c]) => [join(base, p), c]));
-  const fresh = new Map([...prefixed(join(tmp, "plugins"), "plugins"), ...prefixed(join(tmp, ".claude-plugin"), ".claude-plugin")]);
+  const fresh = new Map([
+    ...prefixed(join(tmp, "plugins"), "plugins"),
+    ...prefixed(join(tmp, ".claude-plugin"), ".claude-plugin"),
+    ...prefixed(join(tmp, ".agents"), ".agents"),
+  ]);
   const current = new Map([
     ...prefixed(join(ROOT, "plugins"), "plugins"),
     ...prefixed(join(ROOT, ".claude-plugin"), ".claude-plugin"),
+    ...prefixed(join(ROOT, ".agents"), ".agents"),
   ]);
 
   const diffs = [...new Set([...fresh.keys(), ...current.keys()])].filter((p) => fresh.get(p) !== current.get(p));
