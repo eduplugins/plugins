@@ -1,7 +1,7 @@
 name: plugins-check
 
-# Verifies plugins/ and .claude-plugin/marketplace.json are in sync with the
-# hand-authored sources (skills/*/SKILL.md, connectors.json, plugins.json).
+# Verifies plugins/, .claude-plugin/marketplace.json, and .agents/plugins/marketplace.json
+# are in sync with the hand-authored sources (skills/*/SKILL.md, connectors.json, plugins.json).
 # scripts/build-plugins.mjs has no runtime dependencies, so this runs on a
 # bare Node checkout — no package install needed.
 

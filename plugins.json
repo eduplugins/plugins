@@ -2,6 +2,7 @@
   {
     "slug": "classroom-teacher",
     "name": "Classroom Teacher",
+    "tagline": "Lesson plans, rubrics, and parent comms in your voice",
     "description": "Full-time generalist teacher toolkit — plan lessons and units, build assessments and rubrics, differentiate for mixed-readiness classes, run inquiry/project units, and draft parent- and report-facing communications in your own voice.",
     "skills": [
       "core/setup",
@@ -34,6 +35,7 @@
   {
     "slug": "relief-teacher",
     "name": "Relief / Casual Teacher",
+    "tagline": "Fast day packs and lesson plans for covering an unfamiliar class",
     "description": "Toolkit for casual and relief teachers covering an unfamiliar class — build or adapt a day pack, put together a lesson and student task sheet on short notice, check a plan for support needs, and run a quick end-of-lesson check.",
     "skills": [
       "core/setup",
@@ -53,6 +55,7 @@
   {
     "slug": "learning-support-teacher",
     "name": "Learning Support Teacher",
+    "tagline": "Differentiation, adapted tasks, and comms for a support caseload",
     "description": "Toolkit for learning support, inclusion, and EAL/D specialists — generate and audit differentiation options, adapt task sheets and checks for individual students, and draft report comments and family communications for a support caseload.",
     "skills": [
       "core/setup",
@@ -73,6 +76,7 @@
   {
     "slug": "curriculum-coordinator",
     "name": "Curriculum Coordinator",
+    "tagline": "Scope and sequence, assessment schedules, and curriculum mapping",
     "description": "Toolkit for curriculum coordinators, heads of department, and instructional designers — map scope and sequence, design inquiry and project units, build assessment schedules and rubrics for cross-marker consistency, catalogue resources for a repository or LMS, and explain curriculum to families.",
     "skills": [
       "core/setup",
@@ -99,6 +103,7 @@
   {
     "slug": "school-leader",
     "name": "School Leader",
+    "tagline": "Whole-school comms and curriculum updates in a consistent voice",
     "description": "Toolkit for principals, deputies, and school administrators — draft whole-school and community communications in a consistent voice, explain curriculum changes to families, and keep an eye on the school's assessment calendar.",
     "skills": [
       "core/setup",

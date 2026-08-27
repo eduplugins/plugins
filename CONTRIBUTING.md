@@ -15,7 +15,7 @@ Add an entry to `connectors.json` — `slug`, `type` (`mcp-http` / `mcp-sse` / `
 
 ## Add or edit a plugin
 
-Add or edit an entry in `plugins.json` — `slug`, `name`, `description`, and the `skills`/`connectors` slugs it bundles.
+Add or edit an entry in `plugins.json` — `slug`, `name`, `tagline` (short subtitle, ≤80 chars — shown as the plugin card subtitle in Codex/ChatGPT), `description`, and the `skills`/`connectors` slugs it bundles.
 
 ## Porting a skill or connector from another project
 

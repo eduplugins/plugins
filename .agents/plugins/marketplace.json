@@ -1,0 +1,68 @@
+{
+  "name": "eduplugins",
+  "interface": {
+    "displayName": "EduPlugins"
+  },
+  "plugins": [
+    {
+      "name": "classroom-teacher",
+      "source": {
+        "source": "local",
+        "path": "./plugins/classroom-teacher"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    },
+    {
+      "name": "relief-teacher",
+      "source": {
+        "source": "local",
+        "path": "./plugins/relief-teacher"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    },
+    {
+      "name": "learning-support-teacher",
+      "source": {
+        "source": "local",
+        "path": "./plugins/learning-support-teacher"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    },
+    {
+      "name": "curriculum-coordinator",
+      "source": {
+        "source": "local",
+        "path": "./plugins/curriculum-coordinator"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    },
+    {
+      "name": "school-leader",
+      "source": {
+        "source": "local",
+        "path": "./plugins/school-leader"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Education"
+    }
+  ]
+}

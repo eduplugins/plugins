@@ -1,0 +1,26 @@
+{
+  "name": "curriculum-coordinator",
+  "version": "1.0.0",
+  "description": "Toolkit for curriculum coordinators, heads of department, and instructional designers — map scope and sequence, design inquiry and project units, build assessment schedules and rubrics for cross-marker consistency, catalogue resources for a repository or LMS, and explain curriculum to families.",
+  "author": {
+    "name": "EduPlugins",
+    "url": "https://github.com/eduplugins"
+  },
+  "homepage": "https://github.com/eduplugins/plugins",
+  "repository": "https://github.com/eduplugins/plugins",
+  "license": "MIT",
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Curriculum Coordinator",
+    "shortDescription": "Scope and sequence, assessment schedules, and curriculum mapping",
+    "longDescription": "Toolkit for curriculum coordinators, heads of department, and instructional designers — map scope and sequence, design inquiry and project units, build assessment schedules and rubrics for cross-marker consistency, catalogue resources for a repository or LMS, and explain curriculum to families.",
+    "developerName": "EduPlugins",
+    "category": "Education",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ]
+  }
+}
