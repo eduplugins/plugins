@@ -2,7 +2,7 @@
 
 [![plugins-check](https://github.com/eduplugins/plugins/actions/workflows/plugins-check.yml/badge.svg)](https://github.com/eduplugins/plugins/actions/workflows/plugins-check.yml)
 
-An open-source source of AI primitives (evidence-backed skills and connectors) for K-12 educators.
+An open-source project of AI primitives (skills, connectors and plugins) for K-12 educators.
 
 ## Supported tools
 
