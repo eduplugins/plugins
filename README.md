@@ -64,7 +64,3 @@ All changes land on `main` via pull request — see [CONTRIBUTING.md](CONTRIBUTI
 pnpm run plugins:build   # regenerate plugins/ and marketplace.json from the data files
 pnpm run plugins:check   # verify nothing has drifted (no code changes)
 ```
-
-## License
-
-[MIT](LICENSE).
